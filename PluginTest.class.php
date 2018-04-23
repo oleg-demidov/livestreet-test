@@ -12,19 +12,19 @@ if (!class_exists('Plugin')) {
     die('Hacking attempt!');
 }
 
-class PluginFixCategory extends Plugin
+class PluginTest extends Plugin
 {
 
     protected $aInherits = array(
-        'module' => array(
-            'ModuleCategory' => 'PluginFixCategory_ModuleCategory',
-        ),
-        'entity'=>[
-            'ModuleCategory_EntityCategory' => '_ModuleCategory_EntityCategory'
-        ],
-        'template' => array(
-            'admin:component.p-category.form' => '_components/p-category/form.tpl'
-        ),
+//        'module' => array(
+//            'ModuleCategory' => 'PluginFixCategory_ModuleCategory',
+//        ),
+//        'entity'=>[
+//            'ModuleCategory_EntityCategory' => '_ModuleCategory_EntityCategory'
+//        ],
+//        'template' => array(
+//            'admin:component.p-category.form' => '_components/p-category/form.tpl'
+//        ),
         //'entity' =>array('ModuleCategory_EntityCategory' => '_ModuleCategory_EntityCategory'),
     );
 

@@ -1,13 +1,13 @@
 <?php
 
-class PluginFixCategory_Update_CreateTable extends ModulePluginManager_EntityUpdate
+class PluginTest_Update_CreateTable extends ModulePluginManager_EntityUpdate
 {
     /**
      * Выполняется при обновлении версии
      */
     public function up()
     {
-        $this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0/dump.sql');
+        $this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0.0/dump.sql');
         
     }
 
@@ -16,6 +16,6 @@ class PluginFixCategory_Update_CreateTable extends ModulePluginManager_EntityUpd
      */
     public function down()
     {
-         $this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0/drop_dump.sql');
+         $this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0.0/drop_dump.sql');
     }
 }

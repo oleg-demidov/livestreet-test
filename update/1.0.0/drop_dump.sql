@@ -1,0 +1,1 @@
+DROP TABLE `prefix_test_test`;

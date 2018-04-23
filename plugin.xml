@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <plugin>
 	<name>
-		<lang name="default">Fix category</lang>
+		<lang name="default">Test</lang>
 	</name>
 	<author>
 		<lang name="default">Oleg Demidov</lang>
@@ -10,12 +10,12 @@
 	<settings></settings>
 	<version>1.0.0</version>
 	<requires>
-		<livestreet>2.0</livestreet>
+		<livestreet>2.0.1</livestreet>
 		<plugins>
 		</plugins>
 	</requires>
 	<description>
-		<lang name="default">Fix category module</lang>
-		<lang name="russian"></lang>
+		<lang name="default">Test</lang>
+		<lang name="russian">Тесты</lang>
 	</description>
 </plugin>
