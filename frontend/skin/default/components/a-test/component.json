@@ -1,0 +1,11 @@
+{
+    "name": "a-test",
+    "version": "1.0.0",
+    "templates": {
+        "form-add": "a-test-form-add.tpl",
+        "form-remove": "a-test-form-remove.tpl",
+        "list": "a-test-list.tpl"
+    },
+    "styles": {
+    }
+}

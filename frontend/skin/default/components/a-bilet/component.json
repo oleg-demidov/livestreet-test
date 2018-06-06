@@ -1,0 +1,10 @@
+{
+    "name": "a-bilet",
+    "version": "1.0.0",
+    "templates": {
+        "form-add": "a-bilet-form-add.tpl",
+        "list": "a-bilet-list.tpl"
+    },
+    "styles": {
+    }
+}

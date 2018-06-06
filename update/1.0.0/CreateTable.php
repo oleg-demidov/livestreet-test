@@ -7,8 +7,15 @@ class PluginTest_Update_CreateTable extends ModulePluginManager_EntityUpdate
      */
     public function up()
     {
-        $this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0.0/dump.sql');
-        
+        if($this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0.0/dump_test.sql')){
+            $this->Message_AddNoticeSingle('Создана таблица test');
+        }
+        if($this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0.0/dump_ask.sql')){
+            $this->Message_AddNoticeSingle('Создана таблица ask');
+        }
+        if($this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0.0/dump_bilet.sql')){
+            $this->Message_AddNoticeSingle('Создана таблица bilet');
+        }
     }
 
     /**

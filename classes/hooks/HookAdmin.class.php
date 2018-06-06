@@ -24,13 +24,24 @@ class PluginTest_HookAdmin extends Hook{
         /**
          * Добавляем новый раздел
          */
-        $oMenu->AddSection(
-            Engine::GetEntity('PluginAdmin_Ui_MenuSection')
-                ->SetCaption($this->Lang_Get('plugin.test.admin.menu.title'))->SetName('test')->SetUrl('plugin/test')->setIcon('question-circle')
-//                ->AddItem(Engine::GetEntity('PluginAdmin_Ui_MenuItem')->SetCaption($this->Lang_Get('plugin.ydirect.admin.menu.ads'))->SetUrl('adgroups'))
-//                ->AddItem(Engine::GetEntity('PluginAdmin_Ui_MenuItem')->SetCaption("Получить токен")->SetUrl('token'))
-                //->AddItem(Engine::GetEntity('PluginAdmin_Ui_MenuItem')->SetCaption($this->Lang_Get('plugin.freelancer.admin.menu.responses'))->SetUrl('responses'))
-        );
+        $oSection =  Engine::GetEntity('PluginAdmin_Ui_MenuSection');
+        
+        $oSection->SetCaption($this->Lang_Get('plugin.test.admin.menu.title'))->SetName('test')->SetUrl('plugin/test')->setIcon('question-circle');
+        
+        $aTests = $this->PluginTest_Test_GetTestItemsAll();
+        
+        $oSection
+                ->AddItem(Engine::GetEntity('PluginAdmin_Ui_MenuItem')
+                    ->SetCaption($this->Lang_Get('plugin.test.admin.test.button_add.text'))
+                    ->SetUrl('add'));
+        
+        foreach ($aTests as $oTest) {
+            $oSection
+                ->AddItem(Engine::GetEntity('PluginAdmin_Ui_MenuItem')->SetCaption($oTest->getTitle())
+                    ->SetUrl($oTest->getCode()));
+        }
+        
+        $oMenu->AddSection( $oSection );
     }
 
 }

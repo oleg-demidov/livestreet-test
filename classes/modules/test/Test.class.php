@@ -6,4 +6,11 @@ class PluginTest_ModuleTest extends ModuleORM
         parent::Init(); 
     }  
     
+    protected $aBehaviors = array(
+        // Категории
+        'category' => array(
+            'class'       => 'ModuleCategory_BehaviorModule',
+            'target_type' => 'test',
+        ),
+    );
 }

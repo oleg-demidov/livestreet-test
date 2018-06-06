@@ -31,10 +31,11 @@ class PluginTest extends Plugin
     public function Init()
     {
        
-     }
+    }
 
     public function Activate()
     {
+        $this->Category_CreateTargetType('test', 'Тесты', array(), true);
         return true;
     }
 
