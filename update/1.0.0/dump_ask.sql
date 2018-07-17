@@ -6,6 +6,7 @@ CREATE TABLE `prefix_test_test_ask` (
     `title` VARCHAR(50) NULL , 
     `text` VARCHAR(1000) NOT NULL , 
     `hint` VARCHAR(2000) NULL , 
+    `order` MEDIUMINT NULL DEFAULT NULL,
      `date` DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP 
     PRIMARY KEY (`id`), 
     INDEX (`test_id`), 

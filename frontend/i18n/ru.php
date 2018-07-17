@@ -3,7 +3,8 @@
 return [
     'admin' => [
         'menu' => [
-            'title' => 'Тесты'
+            'title' => 'Тесты',
+            'settings' => 'Настройки'
         ],
         'test' => [
             'button_add' => [
@@ -27,6 +28,32 @@ return [
                 'no_bilet' => 'Билет не найден'
             ]
         ]
+    ],
+    'main_menu' => [
+        'tests' => [
+            'text' => 'Обучение'
+        ]
+    ],
+    'panel' => [
+        'bilets' => [
+            'text' => 'Билеты'
+        ],
+        'categories' => [
+            'text' => 'Категории'
+        ],
+        'bilet' => [
+            'button_start' => 'Старт',
+            'count_ask' => 'количество'
+        ]
+    ],
+    'bilet' => [
+        'error' => [
+            'no_find' => 'Билет не найден'
+        ]
+    ],
+    'ask' => [
+        'error' => [
+            'no_find' => 'Вопрос не найден'
+        ]
     ]
-    
 ];

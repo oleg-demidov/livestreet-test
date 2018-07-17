@@ -30,12 +30,15 @@ class PluginTest extends Plugin
 
     public function Init()
     {
-       
+        $this->Component_Add('test:bilet');
+        $this->Media_AddTargetType('test_img_default');
     }
 
     public function Activate()
     {
         $this->Category_CreateTargetType('test', 'Тесты', array(), true);
+        
+        $this->Property_CreateTargetType('ask', ["entity" => "ModuleTopic_EntityTopic", "name" => "Вопрос"]);
         return true;
     }
 

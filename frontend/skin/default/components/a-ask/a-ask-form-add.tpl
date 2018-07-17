@@ -23,7 +23,13 @@
     {$items[] = [ 'value' => $category->getId(), 'text' => $category->getTitle() ]}
 {/foreach}
 
-{component 'admin:p-form' isEdit=$oAsk submit=[ name => 'ask_submit' , 'text' => $aLang.common.save] form=[
+{component 'admin:p-form'
+    content = {insert name='block' block='propertyUpdate' params=[
+        'target'      => $oAsk,
+        'entity'      => 'PluginTest_ModuleTest_EntityAsk',
+        'target_type' => "ask"
+    ]}
+    attributes=[enctype => "multipart/form-data"] isEdit=$oAsk submit=[ name => 'ask_submit' , 'text' => $aLang.common.save] form=[
     [ field => 'text',     name => 'ask[title]', label => 'Название' ],
     [ field => 'textarea',     name => 'ask[text]',  label => 'Вопрос' ],
     [ field => 'textarea',     name => 'ask[hint]', label => 'Подсказка' ],
@@ -32,6 +38,9 @@
     [ field => 'select', name => 'ask[bilet_id]', label => 'Билет', items => $aItemsBilets ],
     [ field => 'select', name => 'ask[category]', label => 'Категория', items => $items]
 ]}
+
+{* Показывает дополнительные поля *}
+
 
 <script>
     jQuery(document).ready(function($){

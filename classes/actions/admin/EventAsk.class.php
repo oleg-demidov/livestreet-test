@@ -27,11 +27,12 @@ class PluginTest_ActionAdmin_EventAsk extends Event
             //Router:Action
         }
         
-        if(isPost()){
+        if(isPost()){ 
             $oAsk->_setData( getRequest('ask') ); 
             
             $oAsk->setAnsesValues( getRequest('anses') );
-            $oAsk->setTestId( $oTest->getId() );            
+            $oAsk->setTestId( $oTest->getId() );   
+            $oAsk->setProperty( getRequest('property') );
           
             if($oAsk->_Validate()){
                 if($oAsk->Save()){
@@ -67,6 +68,7 @@ class PluginTest_ActionAdmin_EventAsk extends Event
             }
         }
         
+        $this->Viewer_Assign('oAsk', $oAsk);
         $this->Viewer_Assign('oAnsRight', $oAnsRight);
         $this->Viewer_Assign('aBilets', $oTest->getBilets());
         $this->Viewer_Assign('aCategories', $oTest->getCategoriesItems());

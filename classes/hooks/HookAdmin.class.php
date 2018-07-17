@@ -34,12 +34,17 @@ class PluginTest_HookAdmin extends Hook{
                 ->AddItem(Engine::GetEntity('PluginAdmin_Ui_MenuItem')
                     ->SetCaption($this->Lang_Get('plugin.test.admin.test.button_add.text'))
                     ->SetUrl('add'));
-        
+                
         foreach ($aTests as $oTest) {
             $oSection
                 ->AddItem(Engine::GetEntity('PluginAdmin_Ui_MenuItem')->SetCaption($oTest->getTitle())
                     ->SetUrl($oTest->getCode()));
         }
+        
+        $oSection
+                ->AddItem(Engine::GetEntity('PluginAdmin_Ui_MenuItem')
+                    ->SetCaption($this->Lang_Get('plugin.test.admin.menu.settings'))
+                    ->SetUrl('settings'));
         
         $oMenu->AddSection( $oSection );
     }

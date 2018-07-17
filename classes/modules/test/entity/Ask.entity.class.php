@@ -17,6 +17,10 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
             'target_type' => 'test',
             'form_field'  => 'category',
         ),
+        'property' => [
+            'class' => 'ModuleProperty_BehaviorEntity',
+            'target_type' => 'ask'
+        ]
     );
    
     protected $aRelations = array(

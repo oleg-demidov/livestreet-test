@@ -12,5 +12,6 @@ class PluginTest_ModuleTest extends ModuleORM
             'class'       => 'ModuleCategory_BehaviorModule',
             'target_type' => 'test',
         ),
+        'property' => 'ModuleProperty_BehaviorModule'
     );
 }

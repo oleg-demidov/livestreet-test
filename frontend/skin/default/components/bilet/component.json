@@ -1,0 +1,11 @@
+{
+    "name": "bilet",
+    "version": "1.0.0",
+    "templates": {
+        "bilet": "bilet.tpl",
+        "list" : "bilet-list.tpl"
+    },
+    "styles": {
+        "bilet":"css/bilet.css"
+    }
+}

@@ -23,6 +23,11 @@
                 'text' => 'Билеты',
                 'name' => 'bilets',
                 'url'  => {router page="admin/plugin/test/{$oTest->getCode()}/bilets"}
+            ],
+            [
+                'text' => 'Настройки',
+                'name' => 'settings',
+                'url'  => {router page="admin/plugin/test/{$oTest->getCode()}/settings"}
             ]
 
         ]

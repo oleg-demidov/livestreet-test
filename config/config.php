@@ -8,7 +8,7 @@ $config['$root$']['db']['table']['test_test_ans'] = '___db.table.prefix___test_a
 /**
  * Роутинг
  */
-//$config['$root$']['router']['page']['page'] = 'PluginPage_ActionPage';
+$config['$root$']['router']['page']['test'] = 'PluginTest_ActionTest';
 
 $config['ask'] = [
     'list' => [

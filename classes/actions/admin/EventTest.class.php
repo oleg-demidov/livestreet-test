@@ -149,4 +149,51 @@ class PluginTest_ActionAdmin_EventTest extends Event
         $this->Viewer_Assign('activeNavItem', 'bilets');
         
     }
+    
+    public function EventSettings() {
+        $this->SetTemplateAction('test-settings');
+                
+        $oTest = $this->PluginTest_Test_GetTestByCode( $this->sCurrentEvent );
+        if(!$oTest){
+            return Router::ActionError($this->Lang_Get('plugin.test.admin.bilet.notices.no_test_find'));
+        }
+        
+        
+        if(isPost()){
+        
+            $oTest->setState(getRequest('state'));
+            
+            if($oTest->Save()){
+                $this->Message_AddNotice('Cохранено успешно');
+            }
+            
+            $aPathFile = $_FILES['image']['tmp_name'];
+            
+            
+            if($aPathFile or getRequest('remove')){  
+                $this->Media_RemoveTarget('test_img_default', $oTest->getId(), true);
+            }
+            
+            if($aPathFile){  
+                            
+                if($this->Media_Upload($aPathFile, 'test_img_default', $oTest->getId())){
+                    $this->Message_AddNotice('Картинка сохранена успешно');
+                }
+
+            }
+        }
+        
+        $_REQUEST = [
+            'state' => $oTest->getState()
+        ];      
+        
+        
+        $aMedias = $this->Media_GetMediaByTarget('test_img_default', $oTest->getId());
+        
+               
+        $this->Viewer_Assign('oTest', $oTest);
+        $this->Viewer_Assign('aMedias', $aMedias);
+//        $this->Viewer_Assign('aBilets', $oTest->getBilets());
+        $this->Viewer_Assign('activeNavItem', 'settings');
+    }
 }
