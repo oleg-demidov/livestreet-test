@@ -14,10 +14,21 @@ class PluginTest_ModuleTest_EntityBilet extends EntityORM
     );
     
     public function getCountAsks() {
-        return $this->PluginTest_Test_GetCountFromAskByFilter(['bilet_id' => $this->getId()]);
+        return $this->PluginTest_Test_GetCountFromAskByFilter(['bilet_id' => $this->getId(), '#cache' => true]);
     }
     
     public function getUrlEdit() {
         return Router::GetPath('admin/plugin/test/bilet/edit/'.$this->getId());
+    }
+    
+    public function getSession() {
+        return  Engine::GetEntity(
+                    'PluginTest_ModuleTest_EntitySession',
+                    [
+                        'type' => 'bilet', 
+                        'id' => $this->getId(), 
+                        'count' => $this->getCountAsks()
+                    ]
+                );
     }
 }

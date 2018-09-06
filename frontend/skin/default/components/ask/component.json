@@ -5,5 +5,9 @@
         "ask": "ask.tpl"
     },
     "styles": {
+    },
+    "scripts": {
+        "ask":"js/ask.js",
+        "ask-pagination":"js/ask-pagination.js"
     }
 }

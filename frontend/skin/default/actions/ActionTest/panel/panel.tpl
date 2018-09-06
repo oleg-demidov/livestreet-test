@@ -11,8 +11,9 @@
         activeItem => $sMenuItemSelect,
         showSingle => true,
         items => [
-            [ 'name' => 'bilets', 'url' => "{router page='stream'}personal/", 'text' => $aLang.plugin.test.panel.bilets.text, 'is_enabled' => !! $oUserCurrent ],
-            [ 'name' => 'categories',  'url' => "{router page='stream'}all/", 'text' => $aLang.plugin.test.panel.categories.text ]
+            [ 'name' => 'bilets', 'url' => "{router page='test'}{$oTest->getCode()}/bilets/", 'text' => $aLang.plugin.test.panel.bilets.text, 'is_enabled' => !! $oUserCurrent ],
+            [ 'name' => 'categories',  'url' => "{router page='test'}{$oTest->getCode()}/categories/", 'text' => $aLang.plugin.test.panel.categories.text ],
+            [ 'name' => 'hard',  'url' => "{router page='test'}{$oTest->getCode()}/hard/", 'text' => $aLang.plugin.test.panel.hard.text ]
         ]
     ]]}
 {/block}

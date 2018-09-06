@@ -1,0 +1,12 @@
+.t-bilet {
+    float: left;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ddd;
+}
+.t-bilet-title{
+    font-size: 16px;
+}
+.t-bilet-count{
+    
+}

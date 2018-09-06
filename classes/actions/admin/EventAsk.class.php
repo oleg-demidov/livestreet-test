@@ -60,13 +60,7 @@ class PluginTest_ActionAdmin_EventAsk extends Event
             $_REQUEST['ask']['category'] = $oCategory->getId();
         }
         
-        $aAnses = $oAsk->getAnses();
-        if(sizeof($aAnses)){
-            $_REQUEST['anses'] = [];
-            foreach ($aAnses as $oAns) {
-                $_REQUEST['anses'][$oAns->getId()] = $oAns->getValue();
-            }
-        }
+        
         
         $this->Viewer_Assign('oAsk', $oAsk);
         $this->Viewer_Assign('oAnsRight', $oAnsRight);

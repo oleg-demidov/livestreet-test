@@ -29,4 +29,23 @@ class PluginTest_ActionTest_EventPanel extends Event
         $this->Viewer_Assign('aBilets', $aBilets);
         $this->Viewer_Assign('oTest', $this->oTest);
     }
+    
+    public function EventCategories() {
+        
+        $oCategory = $this->PluginTest_Test_GetCategoryByFilter([ 'url' => $this->oTest->getCode() ]);
+        
+        $aCategories = $oCategory->getDescendants();
+        
+        $this->SetTemplateAction('panel/categories');        
+        $this->Viewer_Assign('sMenuItemSelect', 'categories');
+        $this->Viewer_Assign('aCategories', $aCategories);
+        $this->Viewer_Assign('oTest', $this->oTest);
+    }
+    
+    public function EventHard() {
+        
+        $this->SetTemplateAction('panel/hard');        
+        $this->Viewer_Assign('sMenuItemSelect', 'hard');
+        $this->Viewer_Assign('oTest', $this->oTest);
+    }
 }

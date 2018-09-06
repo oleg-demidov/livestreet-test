@@ -6,8 +6,7 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
     protected $aValidateRules = array(
         array('title', 'string', 'max' => 50, 'min' => 1, 'allowEmpty' => true),
         array('text', 'string', 'max' => 1000, 'min' => 1, 'allowEmpty' => false),
-        array('hint', 'string', 'max' => 2000, 'min' => 1, 'allowEmpty' => true)
-        
+        array('hint', 'string', 'max' => 2000, 'min' => 1, 'allowEmpty' => true),
     );
     
     protected $aBehaviors = array(
@@ -29,6 +28,7 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
         'anses' => array( self::RELATION_TYPE_HAS_MANY, 'PluginTest_ModuleTest_EntityAns', 'ask_id' ),
         'ans' => array( self::RELATION_TYPE_HAS_ONE, 'PluginTest_ModuleTest_EntityAns', 'ask_id'),
     );
+    
      
     public function getCountAns() {
         return $this->PluginTest_Test_GetCountFromAnsByFilter(['ask_id' => $this->getId()]);
@@ -39,7 +39,7 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
     }
      
     public function afterSave() {
-        parent::afterSave();
+        parent::afterSave(); 
         
         if(!is_array( $aAnsesValues = $this->getAnsesValues() ) ){
             return false;

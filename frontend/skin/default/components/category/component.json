@@ -1,0 +1,11 @@
+{
+    "name": "category",
+    "version": "1.0.0",
+    "templates": {
+        "category": "category.tpl",
+        "list" : "category-list.tpl"
+    },
+    "styles": {
+        "category":"css/category.css"
+    }
+}

@@ -1,22 +1,26 @@
 <?php
 
-class PluginTest_ActionTest_EventBilet extends Event
+class PluginTest_ActionTest_EventHard extends Event
 {
-    private $oBilet;
+    private $oHard;
     
-    private $oBiletSession;
+    private $oHardSession;
 
     public function Init() {
-        $iIdBilet = getRequest('id', $this->GetParam(0));
+        $this->oTest = $this->PluginTest_Test_GetTestByCode( $this->sCurrentEvent );
         
-        if(!$this->oBilet = $this->PluginTest_Test_GetBiletByFilter(['id' => $iIdBilet])){
-            return Router::ActionError($this->Lang_Get('plugin.test.bilet.error.no_find'));
+        if(!$this->oTest){
+            $this->oTest = $this->PluginTest_Test_GetTestById( getRequest('id') );
         }
         
-        $this->oBiletSession = $this->oBilet->getSession();
+        if(!$this->oTest){
+            return parent::EventNotFound();
+        }
         
-        $this->oTest = $this->oBilet->getTest();
+        $this->oHard = $this->oTest->getHard();
         
+        $this->oHardSession = $this->oHard->getSession();
+                
         $this->sMenuHeadItemSelect = $this->oTest->getCode();
     }
     
@@ -30,9 +34,9 @@ class PluginTest_ActionTest_EventBilet extends Event
             $iNumberAsk = 1;
         }
                 
-        $this->oBiletSession->setNowAsk($iNumberAsk);
+        $this->oHardSession->setNowAsk($iNumberAsk);
         
-        $oAsk = $this->PluginTest_Test_GetBiletAsk($this->oBilet, $iNumberAsk);
+        $oAsk = $this->PluginTest_Test_GetAskById($this->oHard->getNowAskId($iNumberAsk) );
         
         if(!$oAsk){
             return Router::ActionError($this->Lang_Get('plugin.test.ask.error.no_find'));
@@ -51,24 +55,24 @@ class PluginTest_ActionTest_EventBilet extends Event
         $this->Viewer_Assign('componentAskWebPath', $this->Component_GetWebPath('test:ask'));
         $this->Viewer_Assign('oAsk', $oAsk);
         $this->Viewer_Assign('iNumberAsk', $iNumberAsk);
-        $this->Viewer_Assign('oBilet', $this->oBilet);
-        $this->Viewer_Assign('oBiletSession', $this->oBiletSession);
+        $this->Viewer_Assign('oHard', $this->oHard);
+        $this->Viewer_Assign('oHardSession', $this->oHardSession);
         $this->Viewer_Assign('iAnsId', getRequest('ans'));
         $this->Viewer_Assign('showSubmit', $showSubmit);
         $this->Viewer_Assign('showHint', $showHint);
-        $this->Viewer_Assign('nextAsk', $this->oBiletSession->getNextAsk());
+        $this->Viewer_Assign('nextAsk', $this->oHardSession->getNextAsk());
         
-        if($this->oBiletSession->isFinished()){
-            $this->Viewer_Assign('urlFinish', Router::GetPath('test/bilet/'.$this->oBilet->getId().'/finish'));
+        if($this->oHardSession->isFinished()){
+            $this->Viewer_Assign('urlFinish', Router::GetPath('test/'.$this->oTest->getCode().'/hard-test/finish'));
             $this->Viewer_Assign('hideNow', 1);
-        }elseif(!$this->oBiletSession->isLast()){
-            $this->Viewer_Assign('sNextUrl', Router::GetPath('test/bilet/'.$this->oBilet->getId().'/next'.$iNumberAsk));
+        }elseif(!$this->oHardSession->isLast()){
+            $this->Viewer_Assign('sNextUrl', Router::GetPath('test/'.$this->oTest->getCode().'/hard-test/next'.$iNumberAsk));
         }
         
-        $iCountAsk = $this->oBilet->getCountAsks();
+        $iCountAsk = $this->oHard->getCountAsks();
         $this->Viewer_Assign('iCountAsk', $iCountAsk);
         
-        $this->SetTemplateAction('bilet/ask');
+        $this->SetTemplateAction('hard/ask');
     }
     
     public function EventAjaxAsk() {
@@ -76,9 +80,9 @@ class PluginTest_ActionTest_EventBilet extends Event
         
         $iNumberAsk = getRequest('iNumberAsk');
         
-        $this->oBiletSession->setNowAsk($iNumberAsk);
+        $this->oHardSession->setNowAsk($iNumberAsk);
         
-        $oAsk = $this->PluginTest_Test_GetBiletAsk($this->oBilet, $iNumberAsk);
+        $oAsk = $this->PluginTest_Test_GetAskById($this->oHard->getNowAskId($iNumberAsk) );
         
         if(!$oAsk){
             $this->Message_AddError($this->Lang_Get('plugin.test.ask.error.no_find'));
@@ -100,26 +104,26 @@ class PluginTest_ActionTest_EventBilet extends Event
         $oViewer->Assign('componentAskWebPath', $this->Component_GetWebPath('test:ask'));
         $oViewer->Assign('oAsk', $oAsk, true);
         $oViewer->Assign('iNumberAsk', $iNumberAsk, true);
-        //$oViewer->Assign('oBilet', $this->oBilet);
-        $oViewer->Assign('aPaginationAsks', $this->oBiletSession->getData());
+        //$oViewer->Assign('oHard', $this->oHard);
+        $oViewer->Assign('aPaginationAsks', $this->oHardSession->getData());
         $oViewer->Assign('iAnsId', getRequest('ans'), true);
         $oViewer->Assign('showSubmit', $showSubmit, true);
         $oViewer->Assign('showHint', $showHint, true);
         $oViewer->Assign('aAnses', $oAsk->getAnses(), true);
         
-        if($this->oBiletSession->isFinished()){
-            $oViewer->Assign('urlFinish', Router::GetPath('test/bilet/'.$this->oBilet->getId().'/finish'), true);
+        if($this->oHardSession->isFinished()){
+            $oViewer->Assign('urlFinish', Router::GetPath('test/'.$this->oTest->getCode().'/hard-test/finish'), true);
             $this->Viewer_AssignAjax('hideNow', 1);
-        }elseif(!$this->oBiletSession->isLast()){
-            $oViewer->Assign('nextUrl', Router::GetPath('test/bilet/'.$this->oBilet->getId().'/next'.$iNumberAsk), true);
+        }elseif(!$this->oHardSession->isLast()){
+            $oViewer->Assign('nextUrl', Router::GetPath('test/'.$this->oTest->getCode().'/hard-test/next'.$iNumberAsk), true);
         }
         
-        $iCountAsk = $this->oBilet->getCountAsks();
+        $iCountAsk = $this->oHard->getCountAsks();
         $this->Viewer_AssignAjax('iNumberAsk', $iNumberAsk);
         $this->Viewer_AssignAjax('iCountAsk', $iCountAsk);
-        $this->Viewer_AssignAjax('aPaginationAsks', $this->oBiletSession->getData());
-        $this->Viewer_AssignAjax('hideNow', $this->oBiletSession->isFinished());
-        $this->Viewer_AssignAjax('nextAsk', $this->oBiletSession->getNextAsk());
+        $this->Viewer_AssignAjax('aPaginationAsks', $this->oHardSession->getData());
+        $this->Viewer_AssignAjax('hideNow', $this->oHardSession->isFinished());
+        $this->Viewer_AssignAjax('nextAsk', $this->oHardSession->getNextAsk());
         $this->Viewer_AssignAjax('html', $oViewer->Fetch('component@test:ask'));
     }
     
@@ -148,10 +152,10 @@ class PluginTest_ActionTest_EventBilet extends Event
         $oResult->setUserId($oUser->getId());
 
         if($oResult->_Validate()){
-            $this->oBiletSession->setAskResult( (int)$oResult->getResult() );
-            $this->oBiletSession->Save();
+            $this->oHardSession->setAskResult( (int)$oResult->getResult() );
+            $this->oHardSession->Save();
 
-            $oResult->Save();
+           // $oResult->Save();
             
             return $oResult;
 
@@ -171,15 +175,15 @@ class PluginTest_ActionTest_EventBilet extends Event
             return Router::ActionError($this->Lang_Get('plugin.test.bilet.error.no_find'));
         }
         
-        $this->oBiletSession->setNowAsk($iNumberAsk);
+        $this->oHardSession->setNowAsk($iNumberAsk);
         
-        Router::LocationAction('test/bilet/'. $this->oBilet->getId(). '/ask'. $this->oBiletSession->getNextAsk());
+        Router::LocationAction('test/'.$this->oTest->getCode().'/hard-test/ask'. $this->oHardSession->getNextAsk());
     }
     
     public function EventFinish() {
         
-        if($this->oBiletSession){
-            $this->oBiletSession->Drop();
+        if($this->oHardSession){
+            $this->oHardSession->Drop();
         }
         
         if($this->oTest){

@@ -1,2 +1,1 @@
-DROP TABLE `prefix_test_test`;
-DROP TABLE `prefix_test_bilet`;
+DROP TABLE `prefix_test`,  `prefix_test_bilet`, `prefix_test_ask`, `prefix_test_ans`;

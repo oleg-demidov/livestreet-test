@@ -88,4 +88,12 @@ class PluginTest_ModuleTest_EntityTest extends EntityORM
         return $oCategory->getChildren($aFilter);
     }
     
+    /*
+     * Получить тест из самых сложных вопросов
+     * 
+     */
+    public function getHard($iLimit = 100) {
+        return $this->PluginTest_Test_GetHardByTestId($this->getId(), $iLimit);
+    }
+    
 }

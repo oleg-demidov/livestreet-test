@@ -4,5 +4,5 @@ CREATE TABLE `prefix_test_ans` (
     `value` VARCHAR(1000) NOT NULL ,
     `is_right` BOOLEAN NULL , 
     PRIMARY KEY (`id`), 
-    INDEX (`ask_id`)) 
+    KEY (`ask_id`)) 
 ENGINE = InnoDB;
