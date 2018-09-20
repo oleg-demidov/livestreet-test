@@ -187,7 +187,7 @@ class PluginTest_ActionTest_EventHard extends Event
         }
         
         if($this->oTest){
-            Router::LocationAction('test/'.$this->oTest->getCode());
+            Router::LocationAction('test/'.$this->oTest->getCode().'/hard');
         }
         
         Router::LocationAction('/');

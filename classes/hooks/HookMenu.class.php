@@ -22,7 +22,7 @@ class PluginTest_HookMenu extends Hook{
             $aItems[] = [
                 'text' => $this->Lang_Get('plugin.test.main_menu.tests.text').' '.$oTest->getTitle(),
                 'name' => $oTest->getCode(),
-                'url'  => Router::GetPath('test/'.$oTest->getCode())
+                'url'  => Router::GetPath('test/'.$oTest->getCode().'/bilets')
             ];
         }
         

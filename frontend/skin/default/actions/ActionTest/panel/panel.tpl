@@ -11,7 +11,7 @@
         activeItem => $sMenuItemSelect,
         showSingle => true,
         items => [
-            [ 'name' => 'bilets', 'url' => "{router page='test'}{$oTest->getCode()}/bilets/", 'text' => $aLang.plugin.test.panel.bilets.text, 'is_enabled' => !! $oUserCurrent ],
+            [ 'name' => 'bilets', 'url' => "{router page='test'}{$oTest->getCode()}/bilets/", 'text' => $aLang.plugin.test.panel.bilets.text],
             [ 'name' => 'categories',  'url' => "{router page='test'}{$oTest->getCode()}/categories/", 'text' => $aLang.plugin.test.panel.categories.text ],
             [ 'name' => 'hard',  'url' => "{router page='test'}{$oTest->getCode()}/hard/", 'text' => $aLang.plugin.test.panel.hard.text ]
         ]
@@ -20,7 +20,7 @@
 
 {block 'layout_page_title'}
     <h2 class="page-header">
-        Тестирование
+        Тестирование {$oTest->getTitle()}
     </h2>
 {/block}
 
