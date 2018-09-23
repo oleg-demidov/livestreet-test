@@ -116,8 +116,13 @@ class PluginTest_ActionTest_EventPanel extends Event
             'test_id' => $this->oTest->getId(),
             '#select' => ['t.*','count(a.id) as count_ask'],
             '#join' => ['LEFT JOIN '.Config::Get('db.table.test_test_ask').' a ON a.bilet_id = t.id'],
-            '#group' => ['id']
+            '#group' => ['id'],
+            '#index-from' => 'id'
         ]);
+        
+        if ($this->oUserCurrent){
+            $this->PluginTest_Test_AttachResultsToBilets($aBilets, $this->oUserCurrent);
+        }
         
         $this->SetTemplateAction('panel/bilets');        
         $this->Viewer_Assign('sMenuItemSelect', 'bilets');

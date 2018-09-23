@@ -144,10 +144,12 @@ class PluginTest_ActionTest_EventCategory extends Event
         }
 
         $oResult->setAskId($oAsk->getId());
+        $oResult->setTestId($this->oTest->getId());
         $oResult->setAsk($oAsk);
         $oResult->setType('category');
         $oResult->setAnsId($iAnsId);
         $oResult->setUserId($oUser->getId());
+        $oResult->setCategoryId($this->oCategory->getId());
 
         if($oResult->_Validate()){
             $this->oCategorySession->setAskResult( (int)$oResult->getResult() );

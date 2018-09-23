@@ -12,6 +12,12 @@
     <div class="{$component}-count">
         {$aLang.plugin.test.panel.bilet.count_ask}:{$oBilet->getCountAsks()}
     </div>
+    <div class="{$component}-count">
+        {$aLang.plugin.test.panel.bilet.count_right}:{$oBilet->getRight()}
+    </div>
+    <div class="{$component}-count">
+        {$aLang.plugin.test.panel.bilet.count_wrong}:{$oBilet->getWrong()}
+    </div>
     {component 'button' 
         text=$aLang.plugin.test.panel.bilet.button_start 
         url={router page="test/bilet/{$oBilet->getId()}"}}

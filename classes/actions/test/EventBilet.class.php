@@ -142,10 +142,12 @@ class PluginTest_ActionTest_EventBilet extends Event
         }
 
         $oResult->setAskId($oAsk->getId());
+        $oResult->setTestId($this->oTest->getId());
         $oResult->setAsk($oAsk);
         $oResult->setType('bilet');
         $oResult->setAnsId($iAnsId);
         $oResult->setUserId($oUser->getId());
+        $oResult->setBiletId($this->oBilet->getId());
 
         if($oResult->_Validate()){
             $this->oBiletSession->setAskResult( (int)$oResult->getResult() );

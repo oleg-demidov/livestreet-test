@@ -84,5 +84,32 @@ class PluginTest_ModuleTest extends ModuleORM
         
         return $oHard;
     }
+    
+    public function AttachResultsToBilets($aBilets, $oUser) {
+        $aBiletIds = array_keys($aBilets);
+
+        $aResults = $this->PluginTest_Test_GetResultItemsByFilter([
+            'user_id'  => $oUser->getId(),
+            'bilet_id in' => $aBiletIds,
+            '#select' => [
+                't.bilet_id',
+                't.result'
+            ],
+            '#index-group' => 'bilet_id'
+        ]);
+
+        foreach ($aBilets as $oBilet) {
+            if(isset($aResults[$oBilet->getId()])){
+                $aResultsBilet = $aResults[$oBilet->getId()];
+                foreach ($aResultsBilet as $oResultBilet) {
+                    if($oResultBilet->getResult()){
+                        $oBilet->setRight($oBilet->getRight() + 1);
+                    }else{
+                        $oBilet->setWrong($oBilet->getWrong() + 1);
+                    }
+                }
+            }
+        }
+    }
         
 }

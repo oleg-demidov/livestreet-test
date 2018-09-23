@@ -29,4 +29,16 @@ $config['admin']['assets'] = [
     ]
 ]; 
 
+$config['$root$']['block']['test_panel'] = array(
+    'action' => array(
+        'test', 'profile'
+    ),
+    'blocks' => array(
+        'right' => array(
+            'panel' => array('priority' => 100,'params' => array('plugin' => 'test'))
+        )
+    ),
+    'clear'  => false,
+);
+
 return $config;
