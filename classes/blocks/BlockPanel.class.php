@@ -12,7 +12,11 @@ class PluginTest_BlockPanel extends Block {
             return $this->SetTemplate("component@test:panel.block.info_no_user");
         }
         
-        if(!$oTest = $this->PluginTest_Test_GetTestByCode(Router::GetActionEvent())){
+        if(!$sCode = $this->GetParam('sTestCode')){
+            $sCode = Router::GetActionEvent();
+        }
+        
+        if(!$oTest = $this->PluginTest_Test_GetTestByCode($sCode)){
             return false;
         }
         
@@ -52,6 +56,7 @@ class PluginTest_BlockPanel extends Block {
         $iCountAskSkipCategory = $iCountAskTotal - ($iCountAskRightCategory + $iCountAskWrongCategory);
         $iPrecent = round(($iCountAskRightBilet/($iCountAskTotal/100))/2 + ($iCountAskRightCategory/($iCountAskTotal/100))/2);
         
+        $this->Viewer_Assign('avatar', $this->GetParam('avatar', true) );
         $this->Viewer_Assign('iPrecent', $iPrecent );
         $this->Viewer_Assign('iCountAskRightBilet', $iCountAskRightBilet );
         $this->Viewer_Assign('iCountAskWrongBilet', $iCountAskWrongBilet );

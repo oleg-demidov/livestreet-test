@@ -3,7 +3,9 @@
  *}
  
 {capture 'content'}
-    {component 'user.avatar' user=$oUserCurrent}
+    {if {$avatar}}
+        {component 'user.avatar' user=$oUserCurrent}
+    {/if}
     <table>
         <tr>
             <td>

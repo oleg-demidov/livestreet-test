@@ -29,13 +29,24 @@ $config['admin']['assets'] = [
     ]
 ]; 
 
-$config['$root$']['block']['test_panel'] = array(
+$config['$root$']['block']['rule_profile'] = array(
     'action' => array(
-        'test', 'profile'
+         'profile'
     ),
     'blocks' => array(
         'right' => array(
-            'panel' => array('priority' => 100,'params' => array('plugin' => 'test'))
+            'panel' => array('priority' => 99,'params' => array('plugin' => 'test', 'sTestCode' => 'pdd', 'avatar' => false))
+        )
+    ),
+    'clear'  => false,
+);
+$config['$root$']['block']['test_panel'] = array(
+    'action' => array(
+        'test'
+    ),
+    'blocks' => array(
+        'right' => array(
+            'panel' => array('priority' => 99,'params' => array('plugin' => 'test', 'avatar' => true))
         )
     ),
     'clear'  => false,
