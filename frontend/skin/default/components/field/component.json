@@ -1,0 +1,6 @@
+{
+    "scripts": {
+        "fieldset" : "js/fieldset.js",
+        "item" : "js/fieldset-item.js"
+    }
+}

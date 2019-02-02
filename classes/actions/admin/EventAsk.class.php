@@ -12,6 +12,8 @@ class PluginTest_ActionAdmin_EventAsk extends Event
     public function EventAddEdit() {
         $this->SetTemplateAction('ask-add');
         
+        
+        
         $aAnses = [];
         if($oAsk = $this->PluginTest_Test_GetAskById($this->GetParam(1))){
             
@@ -30,9 +32,8 @@ class PluginTest_ActionAdmin_EventAsk extends Event
         if(isPost()){ 
             $oAsk->_setData( getRequest('ask') ); 
             
-            $oAsk->setAnsesValues( getRequest('anses') );
+            $oAsk->setRightAnsValue(getRequest('right_ans_value'));
             $oAsk->setTestId( $oTest->getId() );   
-            $oAsk->setProperty( getRequest('property') );
           
             if($oAsk->_Validate()){
                 if($oAsk->Save()){

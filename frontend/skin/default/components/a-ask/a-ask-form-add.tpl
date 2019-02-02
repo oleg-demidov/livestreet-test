@@ -26,30 +26,24 @@
 {* Формируем список ответов  *}
 {$itemsAns=[]}
 {foreach $oAsk->getAnses() as $ans}
-    {$itemAns = [ value => $ans->getValue(), name => "anses" ]}
     
     {if $ans->getIsRight()}
-        {$itemAns.classes = "right-ans-field"}
+        {$activeItem = $ans->getValue()}
     {/if}
     
-    {$itemsAns[] = $itemAns}
+    {$itemsAns[] = $ans->getValue()}
 {/foreach}
 
 {component 'admin:p-form'
-    content = {insert name='block' block='propertyUpdate' params=[
-        'target'      => $oAsk,
-        'entity'      => 'PluginTest_ModuleTest_EntityAsk',
-        'target_type' => "ask"
-    ]}
     attributes=[enctype => "multipart/form-data"] 
     isEdit=$oAsk 
     submit=[ name => 'ask_submit' , 'text' => $aLang.common.save] 
     form=[
+        [ field => 'image',     name => 'ask[image]', label => 'Изображение' ],
         [ field => 'text',     name => 'ask[title]', label => 'Название' ],
         [ field => 'textarea',     name => 'ask[text]',  label => 'Вопрос' ],
         [ field => 'textarea',     name => 'ask[hint]', label => 'Подсказка' ],
-        [ field => 'set', name => 'anses', 'items' => $itemsAns , label => 'Ответы', 'isAllowUpdate' => true, classes => 'js-anses'],
-        [ field => 'text', name => 'ask[right_ans_value]', label => 'Верный ответ'],
+        {component "test:field" template = 'fieldset'  items=$itemsAns activeItem=$activeItem   name = 'ask[anses_values][]' label = 'Ответы' },
         [ field => 'text', name => 'ask[order]', label => 'Порядок в билете', 'note' => 'Чем меньше тем выше'],
         [ field => 'select', name => 'ask[bilet_id]', label => 'Билет', items => $aItemsBilets ],
         [ field => 'select', name => 'ask[category]', label => 'Категория', items => $items]

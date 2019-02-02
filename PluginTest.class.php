@@ -23,7 +23,7 @@ class PluginTest extends Plugin
 //            'ModuleCategory_EntityCategory' => '_ModuleCategory_EntityCategory'
 //        ],
 //        'template' => array(
-//            'admin:component.p-category.form' => '_components/p-category/form.tpl'
+//            'component.field.fieldset' => '_components/field/fieldset.tpl'
 //        ),
         //'entity' =>array('ModuleCategory_EntityCategory' => '_ModuleCategory_EntityCategory'),
     );
@@ -32,6 +32,7 @@ class PluginTest extends Plugin
     {
         $this->Component_Add('test:bilet');
         $this->Component_Add('test:ask');
+        $this->Component_Add('test:field');
         
         $this->Media_AddTargetType('test_img_default');
         
