@@ -33,6 +33,27 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
     public function getUrlEdit() {
         return Router::GetPath('admin/plugin/test/ask/edit/'.$this->getId());
     }
+    
+    
+    public function getMedia() {
+        if(is_array(parent::getMedia()) and count(parent::getMedia())){
+            return parent::getMedia();
+        }
+        
+        $aMedia =  $this->Media_GetMediaByTarget('ask', $this->getId());
+        
+        $this->setMedia($aMedia);
+        
+        return $aMedia;
+    }
+    
+    
+    public function getImage($sSize) {
+        if($aMedia =  $this->getMedia()){
+            return array_shift($aMedia)->getFileWebPath($sSize);
+        }
+        return null;
+    }
      
     public function afterSave() {
         parent::afterSave(); 

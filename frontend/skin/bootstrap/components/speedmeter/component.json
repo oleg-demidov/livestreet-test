@@ -1,0 +1,13 @@
+{
+    "name": "speedmeter",
+    "version": "1.0.0",
+    "templates": {
+        "speedmeter": "speedmeter.tpl"
+    },
+    "styles": {
+        "speedmeter":"css/speedmeter.css"
+    },
+    "scripts":{
+        "speedmeter":"js/speedmeter.js"
+    }
+}

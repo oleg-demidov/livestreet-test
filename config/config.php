@@ -13,11 +13,14 @@ $config['$root$']['db']['table']['test_test_result'] = '___db.table.prefix___tes
  */
 $config['$root$']['router']['page']['test'] = 'PluginTest_ActionTest';
 
+
 $config['ask'] = [
+    'image' => [
+        'width' => 500
+    ],
     'list' => [
         'per_page' => 20
     ]
-    
 ];
 
 $config['admin']['assets'] = [

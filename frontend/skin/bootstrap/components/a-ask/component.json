@@ -1,0 +1,10 @@
+{
+    "name": "a-ask",
+    "version": "1.0.0",
+    "templates": {
+        "form-add": "a-ask-form-add.tpl",
+        "list": "a-ask-list.tpl"
+    },
+    "styles": {
+    }
+}

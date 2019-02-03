@@ -32,7 +32,7 @@ class PluginTest extends Plugin
     {
         $this->Component_Add('test:bilet');
         $this->Component_Add('test:ask');
-        $this->Component_Add('test:field');
+        
         
         $this->Media_AddTargetType('test_img_default');
         

@@ -19,6 +19,9 @@ class PluginTest_Update_CreateTable extends ModulePluginManager_EntityUpdate
         if($this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0.0/dump_bilet.sql')){
             $this->Message_AddNoticeSingle('Создана таблица bilet');
         }
+        if($this->exportSQL(Plugin::GetPath(__CLASS__) . '/update/1.0.0/dump_result.sql')){
+            $this->Message_AddNoticeSingle('Создана таблица result');
+        }
     }
 
     /**

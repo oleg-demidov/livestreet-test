@@ -2,10 +2,11 @@
 
 class PluginTest_ActionAdmin_EventAsk extends Event
 {
+    protected $oUserCurrent = null;
 
     public function Init()
     {
-        
+        $this->oUserCurrent = $this->User_GetUserCurrent();
     }
 
     
@@ -34,11 +35,26 @@ class PluginTest_ActionAdmin_EventAsk extends Event
             
             $oAsk->setRightAnsValue(getRequest('right_ans_value'));
             $oAsk->setTestId( $oTest->getId() );   
-          
+            
+            
+            
             if($oAsk->_Validate()){
+                
                 if($oAsk->Save()){
+                    
+                    if ($oMedia = $this->Media_Upload($_FILES['image'], 'user' , $this->oUserCurrent->getId()) and is_object($oMedia)) {
+                        $this->Media_RemoveTargetByTypeAndId('ask', $oAsk->getId());
+                        $this->Media_AttachMedia([$oMedia->getId()], 'ask', $oAsk->getId());
+                    }else{
+                        $this->Message_AddError($oMedia);
+                    }
+                    
+                    if(getRequest('remove_image')){
+                        $this->Media_RemoveTargetByTypeAndId('ask', $oAsk->getId());
+                    }
+                    
                     $this->Message_AddNoticeSingle($this->Lang_Get('common.success.save'), '', true);
-                    Router::LocationAction('admin/plugin/test/'.$oTest->getCode());
+                    //Router::LocationAction('admin/plugin/test/'.$oTest->getCode());
                 }else{
                     $this->Message_AddErrorSingle($this->Lang_Get('common.error.system.base'));
                 }

@@ -1,0 +1,13 @@
+{
+    "name": "ask",
+    "version": "1.0.0",
+    "templates": {
+        "ask": "ask.tpl"
+    },
+    "styles": {
+    },
+    "scripts": {
+        "ask":"js/ask.js",
+        "ask-pagination":"js/ask-pagination.js"
+    }
+}
