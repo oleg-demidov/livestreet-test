@@ -85,12 +85,12 @@ class PluginTest_ActionTest_EventBilet extends Event
             return;
         }
         
-        $showSubmit = 1;
+        $showSubmit = true;
         $showHint = 0;
         
-        if(getRequest('action')){
+        if(getRequest('action')){ $this->Logger_Notice((int)getRequest('ans'));
             if($oResult = $this->SubmitResultAns($oAsk, getRequest('ans'))){
-                $showSubmit = 0;
+                $showSubmit = false;
                 $showHint = !$oResult->getResult();
             }
         }
@@ -117,6 +117,7 @@ class PluginTest_ActionTest_EventBilet extends Event
         $iCountAsk = $this->oBilet->getCountAsks();
         $this->Viewer_AssignAjax('iNumberAsk', $iNumberAsk);
         $this->Viewer_AssignAjax('iCountAsk', $iCountAsk);
+        $this->Viewer_AssignAjax('showSubmit', $showSubmit);
         $this->Viewer_AssignAjax('aPaginationAsks', $this->oBiletSession->getData());
         $this->Viewer_AssignAjax('hideNow', $this->oBiletSession->isFinished());
         $this->Viewer_AssignAjax('nextAsk', $this->oBiletSession->getNextAsk());
@@ -149,7 +150,7 @@ class PluginTest_ActionTest_EventBilet extends Event
         $oResult->setUserId($oUser->getId());
         $oResult->setBiletId($this->oBilet->getId());
 
-        if($oResult->_Validate()){
+        if($oResult->_Validate()){            
             $this->oBiletSession->setAskResult( (int)$oResult->getResult() );
             $this->oBiletSession->Save();
 

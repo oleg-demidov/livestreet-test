@@ -67,7 +67,7 @@
             urlFinish = $urlFinish        
         }
         
-        <input type="hidden" name="action" value="submit" />
+        
     </form>
     
 {/block}

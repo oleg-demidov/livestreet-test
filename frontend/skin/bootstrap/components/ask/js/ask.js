@@ -36,7 +36,9 @@
             
             this.option('urls.ans', aRouter.test + 'ajax-' + this.element.data('paramType') + '/' + this.element.data('paramId'));
 
-            this._form('ans', this.element, 'onSubmit');
+            this._form('ans', this.element, 'onSubmit', {
+                onComplete: this.onComplete.bind(this)
+            });
             
             this._on( this.elements.next, {click: 'clickNext'});
             
@@ -88,8 +90,14 @@
         
         onSubmit:function(result){
             this.elements.inner.html( result.html );
-            
             this.updateForm(result);
+        },
+        
+        onComplete: function(result){ 
+            let response = result.responseJSON;
+            if(!response.showSubmit && !response.bStateError){
+                ls.utils.formLock( this.element );
+            }
         }
 
         

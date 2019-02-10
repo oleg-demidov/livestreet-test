@@ -2,12 +2,10 @@
 
 
 class PluginTest_HookMenu extends Hook{
+    
     public function RegisterHook()
     {
-        
-        $this->AddHook('template_nav_main', 'NavMain', null, 655);
-        
-        
+        $this->AddHook('engine_init_complete', 'NavMain');        
     }
 
     /**
@@ -17,18 +15,19 @@ class PluginTest_HookMenu extends Hook{
     {
         $aTests = $this->PluginTest_Test_GetTestItemsAll();
         
+        $oMenu = $this->Menu_Get('main');
+        
         $aItems = [];
         foreach ($aTests as $oTest) {
-            $aItems[] = [
-                'text' => $this->Lang_Get('plugin.test.main_menu.tests.text').' '.$oTest->getTitle(),
-                'name' => $oTest->getCode(),
-                'url'  => Router::GetPath('test/'.$oTest->getCode().'/bilets')
-            ];
+           
+            $oMenu->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
+                'name' => $oTest->getTitle(),
+                'title' => $this->Lang_Get('plugin.test.main_menu.tests.text').' '.$oTest->getTitle(),
+                'url' => 'test/'.$oTest->getCode().'/bilets'
+            ]));
+            
         }
         
-        $aResult = array_merge( $aItems, $aParams['items']);
-        return    $aResult;
-
     }
-
+    
 }

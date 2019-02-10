@@ -8,15 +8,14 @@
         options: {
             // Селекторы
             selectors: {
-                items:".ls-nav-item"
+                items:".nav-link"
             },
             i18n: {
                 
             },
             classes:{
                 active:     "active",
-                itemText:   "ls-nav-item-text",
-                item:       "ls-nav-item"
+                itemText:   "nav-link"
             }
         },
 
@@ -29,7 +28,7 @@
         _create: function () {
             var _this = this;
 
-            this._super();            
+            this._super();
             
         },
         
@@ -37,7 +36,7 @@
             this.elements.items.removeClass(this.option('classes.active'));
         },
         
-        setActive:function(numberItem){ console.log(numberItem)
+        setActive:function(numberItem){ 
             if(!this.elements.items.length){
                 return null;
             }
@@ -73,7 +72,7 @@
                 return null;
             }
             
-            $(this.elements.items[numberItem-1]).addClass(this.option('classes.item') + '--' + mod);
+            $(this.elements.items[numberItem-1]).addClass( 'bg-' + mod).addClass( 'text-white' );
         },
         
         setMods: function(aData){ 

@@ -96,6 +96,6 @@
     {/if}
 
     {component 'actionbar' items=$itemsAction}
-
+    <input type="hidden" name="action" value="submit" />
 </div>
 
