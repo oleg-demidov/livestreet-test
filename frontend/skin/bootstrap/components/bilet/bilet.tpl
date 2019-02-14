@@ -22,11 +22,9 @@
         url     = {router page="test/bilet/{$oBilet->getId()}"}}
 {/capture}
 
-<div class="p-1">
-    {component 'bs-card' classes="w-20" content=[
-        [   
-            type => 'body',
-            content => $smarty.capture.content_bilet
-        ]
-    ]}
-</div>
+{component 'bs-card' classes="w-20" content=[
+    [   
+        type => 'body',
+        content => $smarty.capture.content_bilet
+    ]
+]}

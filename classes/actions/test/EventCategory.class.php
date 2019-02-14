@@ -99,6 +99,7 @@ class PluginTest_ActionTest_EventCategory extends Event
         }
         
         $oViewer = $this->Viewer_GetLocalViewer();
+        $oViewer->GetSmartyObject()->addPluginsDir(Config::Get('path.application.server').'/classes/modules/viewer/plugs');
         
         $oViewer->Assign('componentAskWebPath', $this->Component_GetWebPath('test:ask'));
         $oViewer->Assign('oAsk', $oAsk, true);

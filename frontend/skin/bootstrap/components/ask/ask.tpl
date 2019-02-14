@@ -15,7 +15,7 @@
         <img src="{$componentAskWebPath}/img/no-image.png">
     {/if}
 
-    {component 'text' text=$oAsk->getText()}
+    {component 'bs-text' classes="h4 mx-3" text=$oAsk->getText()}
 
     <ul>
         {foreach $aAnses as $oAns}
@@ -31,7 +31,12 @@
                     {/if}
                 {/if}
 
-                {component 'field.radio' name='ans' mods=$mods value=$oAns->getId() label=$oAns->getValue()}
+                {component 'bs-form.checkbox' 
+                    radio   = true
+                    name    = 'ans' 
+                    mods    = $mods 
+                    value   = $oAns->getId() 
+                    label   = $oAns->getValue()}
             </li>
         {/foreach}
     </ul>
