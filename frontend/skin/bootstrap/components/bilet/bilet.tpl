@@ -6,27 +6,31 @@
 {component_define_params params=[ 'oBilet' ]}
 
 {capture name="content_bilet"}
-    {$oBilet->getTitle()}
-    <div class="{$component}-count">
-        {$aLang.plugin.test.panel.bilet.count_ask}:{$oBilet->getCountAsks()}
+    <h5>{$oBilet->getTitle()}</h5>
+    
+    <div class="no-gutters row">
+        <div class="col-9">{$aLang.plugin.test.panel.bilet.count_ask}:</div>
+        <div  class="col-3">{$oBilet->getCountAsks()}</div>
     </div>
-    <div class="{$component}-count">
-        {$aLang.plugin.test.panel.bilet.count_right}:{$oBilet->getRight()}
+    <div class=" no-gutters row text-danger">
+        <div class="col-9">{$aLang.plugin.test.panel.bilet.count_wrong}:</div>
+        <div  class="col-3">{$oBilet->getWrong()}</div>
     </div>
-    <div class="{$component}-count">
-        {$aLang.plugin.test.panel.bilet.count_wrong}:{$oBilet->getWrong()}
+    <div class=" no-gutters row text-success">
+        <div class="col-9">{$aLang.plugin.test.panel.bilet.count_right}:</div>
+        <div class="col-3">{$oBilet->getRight()}</div>
     </div>
+    
     {component 'bs-button' 
-        bmods   = "sm success"
+        bmods   = "sm  success"
+        classes = "mt-2"
         text    = $aLang.plugin.test.panel.bilet.button_start 
         url     = {router page="test/bilet/{$oBilet->getId()}"}}
 {/capture}
 
-<div class="p-1">
-    {component 'bs-card' classes="w-20" content=[
-        [   
-            type => 'body',
-            content => $smarty.capture.content_bilet
-        ]
-    ]}
-</div>
+{component 'bs-card' classes="bilet"  content=[
+    [   
+        type => 'body',
+        content => $smarty.capture.content_bilet
+    ]
+]}

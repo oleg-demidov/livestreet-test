@@ -2,10 +2,11 @@
 
 class PluginTest_ActionAdmin_EventTest extends Event
 {
+    protected $oUserCurrent = null;
 
     public function Init()
     {
-       
+        $this->oUserCurrent = $this->User_GetUserCurrent();
     }
 
    
@@ -167,16 +168,17 @@ class PluginTest_ActionAdmin_EventTest extends Event
                 $this->Message_AddNotice('Cохранено успешно');
             }
             
-            $aPathFile = $_FILES['image']['tmp_name'];
+            $aFile = $_FILES['image'];
             
             
-            if($aPathFile or getRequest('remove')){  
+            if($aFile or getRequest('remove')){  
                 $this->Media_RemoveTarget('test_img_default', $oTest->getId(), true);
             }
             
-            if($aPathFile){  
+            if($aFile){  
                             
-                if($this->Media_Upload($aPathFile, 'test_img_default', $oTest->getId())){
+                if($oMedia = $this->Media_Upload($aFile, 'user', $this->oUserCurrent->getId()) and is_object($oMedia)){
+                    $this->Media_AttachMedia([$oMedia->getId()], 'test_img_default', $oTest->getId());
                     $this->Message_AddNotice('Картинка сохранена успешно');
                 }
 

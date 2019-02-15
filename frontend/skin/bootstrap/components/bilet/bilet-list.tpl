@@ -6,10 +6,10 @@
 {component_define_params params=[ 'aBilets' ]}
 
 {if $aBilets}
-    <div class="{$component} mt-3 d-flex flex-md-row flex-column justify-content-start flex-wrap">
+    <div class="{$component} mt-3 d-flex justify-content-between flex-wrap">
         {foreach $aBilets as $oBilet}
                 
-            {component 'test:bilet' oBilet=$oBilet}
+            {component 'test:bilet' oBilet=$oBilet }
 
         {/foreach}
     </div>
