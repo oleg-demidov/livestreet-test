@@ -21,6 +21,10 @@
         <div class="col-3">{$oBilet->getRight()}</div>
     </div>
     
+    {$precent = round($oBilet->getRight()/$oBilet->getCountAsks()*100)}
+    
+    {component "bs-progressbar" value=$precent classes="my-1" height=3 bg="success"}
+    
     {component 'bs-button' 
         bmods   = "sm  success"
         classes = "mt-2"
@@ -29,6 +33,7 @@
 {/capture}
 
 {component 'bs-card' classes="bilet"  content=[
+
     [   
         type => 'body',
         content => $smarty.capture.content_bilet

@@ -96,6 +96,7 @@ class PluginTest_ActionTest_EventBilet extends Event
         }
         
         $oViewer = $this->Viewer_GetLocalViewer();
+        $oViewer->GetSmartyObject()->addPluginsDir(Config::Get('path.application.server').'/classes/modules/viewer/plugs');
         
         $oViewer->Assign('componentAskWebPath', $this->Component_GetWebPath('test:ask'));
         $oViewer->Assign('oAsk', $oAsk, true);
@@ -138,8 +139,6 @@ class PluginTest_ActionTest_EventBilet extends Event
 
         if(!$oUser){
             $oResult->setTmp(1);
-        }else{
-            $oResult->setUserId($oUser->getId());
         }
 
         $oResult->setAskId($oAsk->getId());

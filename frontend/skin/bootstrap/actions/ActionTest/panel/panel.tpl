@@ -15,7 +15,7 @@
         items => [
             [ 'name' => 'bilets', 'url' => "{router page='test'}{$oTest->getCode()}/bilets/", 'text' => $aLang.plugin.test.panel.bilets.text],
             [ 'name' => 'categories',  'url' => "{router page='test'}{$oTest->getCode()}/categories/", 'text' => $aLang.plugin.test.panel.categories.text ],
-            [ 'name' => 'hard',  'url' => "{router page='test'}{$oTest->getCode()}/hard/", 'text' => $aLang.plugin.test.panel.hard.text ]
+            [ 'name' => 'hard',  'url' => "{router page='test'}{$oTest->getCode()}/hard/", 'text' => $aLang.plugin.test.panel.hard.title ]
         ]
     ]]}
 {/block}

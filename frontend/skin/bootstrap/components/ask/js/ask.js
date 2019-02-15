@@ -17,7 +17,7 @@
             },
             classes:{
                 askPagination:"js-ask-pagination",
-                input: "ls-field-input",
+                input: "form-check-input",
                 auto:   "js-auto-ask",
                 active: "active"
             }

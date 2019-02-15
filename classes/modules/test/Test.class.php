@@ -111,5 +111,36 @@ class PluginTest_ModuleTest extends ModuleORM
             }
         }
     }
+    
+    public function AttachResultsToCategories($aCategories, $oUser) {
         
+        $aCategoriesIds = [];
+
+        foreach ($aCategories as $oCategory) {
+            $aCategoriesIds[] = $oCategory->getId();
+        }
+
+        $aResults = $this->PluginTest_Test_GetResultItemsByFilter([
+            'user_id'  => $oUser->getId(),
+            'category_id in' => $aCategoriesIds,
+            '#select' => [
+                't.category_id',
+                't.result'
+            ],
+            '#index-group' => 'category_id'
+        ]);
+
+        foreach ($aCategories as $oCategory) {
+            if(isset($aResults[$oCategory->getId()])){
+                $aResultsCategory = $aResults[$oCategory->getId()];
+                foreach ($aResultsCategory as $oResultCategory) {
+                    if($oResultCategory->getResult()){
+                        $oCategory->setRight($oCategory->getRight() + 1);
+                    }else{
+                        $oCategory->setWrong($oCategory->getWrong() + 1);
+                    }
+                }
+            }
+        }
+    }  
 }
