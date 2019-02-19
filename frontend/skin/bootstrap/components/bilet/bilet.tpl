@@ -12,11 +12,11 @@
         <div class="col-9">{$aLang.plugin.test.panel.bilet.count_ask}:</div>
         <div  class="col-3">{$oBilet->getCountAsks()}</div>
     </div>
-    <div class=" no-gutters row text-danger">
+    <div class=" no-gutters row {if $oBilet->getWrong()}text-danger{else}text-muted{/if}">
         <div class="col-9">{$aLang.plugin.test.panel.bilet.count_wrong}:</div>
         <div  class="col-3">{$oBilet->getWrong()}</div>
     </div>
-    <div class=" no-gutters row text-success">
+    <div class=" no-gutters row {if $oBilet->getRight()}text-success{else}text-muted{/if}">
         <div class="col-9">{$aLang.plugin.test.panel.bilet.count_right}:</div>
         <div class="col-3">{$oBilet->getRight()}</div>
     </div>

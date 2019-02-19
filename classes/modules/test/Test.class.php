@@ -99,6 +99,8 @@ class PluginTest_ModuleTest extends ModuleORM
         ]);
 
         foreach ($aBilets as $oBilet) {
+            $oBilet->setRight(0);
+            $oBilet->setWrong(0);
             if(isset($aResults[$oBilet->getId()])){
                 $aResultsBilet = $aResults[$oBilet->getId()];
                 foreach ($aResultsBilet as $oResultBilet) {
@@ -131,6 +133,8 @@ class PluginTest_ModuleTest extends ModuleORM
         ]);
 
         foreach ($aCategories as $oCategory) {
+            $oCategory->setRight(0);
+            $oCategory->setWrong(0);
             if(isset($aResults[$oCategory->getId()])){
                 $aResultsCategory = $aResults[$oCategory->getId()];
                 foreach ($aResultsCategory as $oResultCategory) {

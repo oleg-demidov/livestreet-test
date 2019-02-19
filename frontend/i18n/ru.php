@@ -81,7 +81,8 @@ return [
             'finish_but' => [
                 'text' => 'Завершить'
             ]
-        ]
+        ],
+        'hint' => "Подсказка"
     ],
     'result' => [
         'validate' => [

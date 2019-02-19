@@ -35,7 +35,7 @@
             this._super();
             
             this.option('urls.ans', aRouter.test + 'ajax-' + this.element.data('paramType') + '/' + this.element.data('paramId'));
-
+           
             this._form('ans', this.element, 'onSubmit', {
                 onComplete: this.onComplete.bind(this)
             });
@@ -50,7 +50,7 @@
         
         attachEventInput:function(){
             this.elements.input = $('.' + this.option('classes.input'));
-            this.elements.input.on( 'change', function(){ 
+            this.elements.input.on( 'change', function(){
                 this.element.submit(); 
             }.bind(this));
             
