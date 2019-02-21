@@ -2,8 +2,8 @@
     "name": "panel",
     "version": "1.0.0",
     "templates": {
-        "block.info": "blocks/info.tpl",
-        "block.info_no_user": "blocks/info_no_user.tpl"
+        "block.panel": "blocks/panel.tpl",
+        "block.profile": "blocks/profile.tpl"
     },
     "styles": {
     }

@@ -45,8 +45,8 @@ $config['$root$']['block']['rule_profile'] = array(
          'profile'
     ),
     'blocks' => array(
-        'left' => array(
-            'panel' => array('priority' => 99,'params' => array('plugin' => 'test', 'sTestCode' => 'pdd', 'avatar' => false))
+        'content' => array(
+            'panel' => array('priority' => 99,'params' => array('plugin' => 'test', 'template' => 'profile', 'sTestCode' => 'pdd', 'avatar' => false))
         )
     ),
     'clear'  => false,
@@ -57,7 +57,7 @@ $config['$root$']['block']['test_panel'] = array(
     ),
     'blocks' => array(
         'left' => array(
-            'panel' => array('priority' => 99,'params' => array('plugin' => 'test', 'avatar' => true))
+            'panel' => array('priority' => 99,'params' => array('plugin' => 'test', 'template' => 'panel', 'avatar' => true))
         )
     ),
     'clear'  => false,

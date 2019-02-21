@@ -67,6 +67,6 @@ class PluginTest_BlockPanel extends Block {
         $this->Viewer_Assign('iCountAskTotal', $iCountAskTotal );
         $this->Viewer_Assign('oUserCurrent',$oUser );
         $this->Viewer_Assign('oTest',$oTest );
-        return $this->SetTemplate("component@test:panel.block.info");       
+        return $this->SetTemplate("component@test:panel.block." . $this->GetParam('template', 'profile'));       
     }
 }
