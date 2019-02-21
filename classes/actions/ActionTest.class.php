@@ -51,7 +51,7 @@ class PluginTest_ActionTest extends ActionPlugin
         $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^hard-test$/i', '/^(ask([0-9]{1,50}))?$/i', 'Hard::EventAsk');
         $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i','/^hard-test$/i', '/^(next([0-9]{1,50}))?$/i', 'Hard::EventNext');
         $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i','/^hard-test$/i', '/^finish$/i', 'Hard::EventFinish');
-        $this->AddEventPreg('/^ajax-hard$/i', '/^[0-9]{1,50}$/i', 'Hard::EventAjaxAsk');        
+        $this->AddEventPreg('/^ajax-hard-test$/i', '/^[0-9]{1,50}$/i', 'Hard::EventAjaxAsk');        
         
         $this->RegisterEventExternal('Panel','PluginTest_ActionTest_EventPanel');
         $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^(index)?$/i', 'Panel::EventIndex');

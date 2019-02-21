@@ -23,6 +23,12 @@ $config['ask'] = [
     ]
 ];
 
+$config['test'] = [
+    'hard' => [
+        'count' => 100
+    ]
+];
+
 $config['admin']['assets'] = [
     'js' => [
         'assets/js/admin.js'
@@ -39,7 +45,7 @@ $config['$root$']['block']['rule_profile'] = array(
          'profile'
     ),
     'blocks' => array(
-        'right' => array(
+        'left' => array(
             'panel' => array('priority' => 99,'params' => array('plugin' => 'test', 'sTestCode' => 'pdd', 'avatar' => false))
         )
     ),
@@ -50,7 +56,7 @@ $config['$root$']['block']['test_panel'] = array(
         'test'
     ),
     'blocks' => array(
-        'right' => array(
+        'left' => array(
             'panel' => array('priority' => 99,'params' => array('plugin' => 'test', 'avatar' => true))
         )
     ),

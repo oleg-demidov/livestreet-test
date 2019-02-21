@@ -19,6 +19,7 @@
             {/if}
         {/if}
         {$items[] = [
+            classes => "ml-1",
             'text' => $foo,
             'name' => "ask{$foo}",
             'mods' =>  $modsAsk,
@@ -35,6 +36,7 @@
         activeItem => $activeItem,
         showSingle => true,
         items => $items,
+        bmods       => "pills",
         classes => 'js-ask-pagination'
     ]]}
 {/block}

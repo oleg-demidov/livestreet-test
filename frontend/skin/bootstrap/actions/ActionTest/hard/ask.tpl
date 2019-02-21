@@ -19,6 +19,7 @@
             {/if}
         {/if}
         {$items[] = [
+            classes => "ml-1",
             'text' => $foo,
             'name' => "ask{$foo}",
             'mods' =>  $modsAsk,
@@ -34,14 +35,15 @@
         hook       => 'bilet',
         activeItem => $activeItem,
         showSingle => true,
-        items => $items,
-        classes => 'js-ask-pagination'
+        items      => $items,
+        bmods      => "pills",
+        classes    => 'js-ask-pagination'
     ]]}
 {/block}
 
 {block 'layout_page_title'}
     <h2 class="page-header">
-        {$aLang.plugin.test.panel.hard.text}
+        {$aLang.plugin.test.panel.hard.title}
     </h2>
 {/block}
 
@@ -50,7 +52,7 @@
     <form method="POST" 
         action="{router page="test/{$oTest->getCode()}/hard-test/ask{$iNumberAsk}"}" 
         class="js-test-ask" 
-        data-param-type="hard"
+        data-param-type="hard-test"
         data-param-id="{$oTest->getId()}"
         data-param-i-number-ask="{$iNumberAsk}"
         data-next-ask="{$nextAsk}">

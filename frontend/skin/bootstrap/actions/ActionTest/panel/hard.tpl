@@ -8,7 +8,7 @@
 {block 'panel_content'}
     
     <div class="my-3">
-        <p>{$aLang.plugin.test.panel.hard.text}</p>
+        <p>{lang name='plugin.test.panel.hard.text' count=Config::Get('plugin.test.test.hard.count')}</p>
     </div>
     
     {component 'bs-button' 

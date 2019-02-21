@@ -10,14 +10,15 @@ class PluginTest_ActionTest_EventHard extends Event
         $this->oTest = $this->PluginTest_Test_GetTestByCode( $this->sCurrentEvent );
         
         if(!$this->oTest){
-            $this->oTest = $this->PluginTest_Test_GetTestById( getRequest('id') );
+            $iIdTest = getRequest('id', $this->GetParam(0));
+            $this->oTest = $this->PluginTest_Test_GetTestById( $iIdTest );
         }
         
         if(!$this->oTest){
             return parent::EventNotFound();
         }
         
-        $this->oHard = $this->oTest->getHard();
+        $this->oHard = $this->oTest->getHard(Config::Get('plugin.test.test.hard.count'));
         
         $this->oHardSession = $this->oHard->getSession();
                 
