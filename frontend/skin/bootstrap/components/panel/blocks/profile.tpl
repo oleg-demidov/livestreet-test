@@ -2,7 +2,7 @@
  * Панель информации
  *}
  
-{capture 'content'}
+{capture 'content'}profile
     {if {$avatar}}
         {component 'user.avatar' user=$oUserCurrent}
     {/if}
