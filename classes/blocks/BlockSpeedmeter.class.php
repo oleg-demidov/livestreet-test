@@ -35,6 +35,7 @@ class PluginTest_BlockSpeedmeter extends Block {
         $dataImage =  $this->SpeedometerChart($iPrecent, $title, $start, $end);
         $base64 = 'data:image/jpeg;base64,' . base64_encode($dataImage);
         $this->Viewer_Assign('img', $base64, true);
+        $this->Viewer_Assign('classes', $this->GetParam('classes'), true);
         return $this->SetTemplate("component@test:speedmeter");
     }
         

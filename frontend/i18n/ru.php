@@ -94,6 +94,7 @@ return [
     ],
     'block' => [
         'panel_info' => [
+            'ready' => 'Готовность',
             'title' => 'Информация',
             'list' => [
                 'total_ask' => 'Всего вопросов',

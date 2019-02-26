@@ -8,7 +8,7 @@
     <div class="d-flex flex-column">
         <div class="row p-2">
             <div class="col-8">{$aLang.plugin.test.block.panel_info.list.total_ask}</div>
-            <div class="col-4">{$iCountAskTotal}444</div>
+            <div class="col-4">{$iCountAskTotal}</div>
         </div>
         
         <div class="bg-light rounded mt-2 p-2">
@@ -49,7 +49,7 @@
         </div>
     </div>
     
-     {insert name='block' block='speedmeter' params=[  'plugin' => 'test', precent=>$iPrecent ]}
+     {insert name='block' block='speedmeter' params=[ classes => 'w-100', 'plugin' => 'test', precent=>$iPrecent ]}
 {/capture}
 
 {component 'bs-card'

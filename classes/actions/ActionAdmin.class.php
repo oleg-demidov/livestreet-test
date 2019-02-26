@@ -42,7 +42,6 @@ class PluginTest_ActionAdmin extends PluginAdmin_ActionPlugin
         $this->AddEventPreg('/^remove_test$/i', '/^([0-9]{1,50})?$/i', 'Test::EventRemove');
         $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^(asks)?$/i', '/^(page([0-9]{1,50}))?$/i', 'Test::EventAskList');
         $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^bilets$/i', 'Test::EventBiletList');
-        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^settings$/i',  'Test::EventSettings');        
        
     }
 

@@ -2,7 +2,6 @@
 * Спидометр
 *}
 {$component = "speedmeter"}
-{component_define_params params=[ 'img' ]}
+{component_define_params params=[ 'img', 'classes' ]}
 
-<br>Готовность к сдаче экзаменов
-<img class="test-{$component}" src="{$img}"/>
+<img class="test-{$component} {$classes}" src="{$img}"/>

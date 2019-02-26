@@ -5,7 +5,7 @@
  
 {extends './test.tpl'}
 
-{block 'test_content'}
+{block 'test_content'}ccc
     {component 'button' text=$aLang.common.add mods="primary" url={router page="admin/plugin/test/ask/add?test={$oTest->getId()}"}}
 
     {component 'pagination' 
@@ -15,7 +15,7 @@
         classes='js-pagination-asks'}
     
     {component 'test:a-ask.list' aAsks=$aAsks}
-    
-{/block}
+    cc
+{/block}cc
 
  

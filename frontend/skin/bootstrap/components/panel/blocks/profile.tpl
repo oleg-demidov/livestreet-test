@@ -2,72 +2,88 @@
  * Панель информации
  *}
  
-{capture 'content'}profile
-    {if {$avatar}}
-        {component 'user.avatar' user=$oUserCurrent}
-    {/if}
-    <table>
-        <tr>
-            <td>
-                &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;
-            </td>
-            <td>
-                Билеты
-            </td>
-            <td>
-                &emsp;Категории
-            </td>
-        </tr>
-        <tr>
-            <td colspan="2">
-                {component 'info-list' list = [
-                    [
-                        label => {$aLang.plugin.test.block.panel_info.list.total_ask},
-                        content => $iCountAskTotal
-                    ],
-                    [
-                        label => {$aLang.plugin.test.block.panel_info.list.right},
-                        content => {$iCountAskRightBilet} 
-                    ],
-                    [
-                        label => {$aLang.plugin.test.block.panel_info.list.wrong},
-                        content => {$iCountAskWrongBilet}
-                    ],
-                    [
-                        label => {$aLang.plugin.test.block.panel_info.list.skip},
-                        content => {$iCountAskSkipBilet}
-                    ],
-                    [
-                        label => {$aLang.plugin.test.block.panel_info.list.total_time},
-                        content => 22
-                    ]
-                ]}
-            </td>
-            <td>
-                {component 'info-list' attributes=[style=>"margin-left:20px;"] list = [
-                    [
-                        content => '&nbsp;'
-                    ],
-                    [
-                        content =>  {$iCountAskRightCategory}
-                    ],
-                    [
-                        content =>  {$iCountAskWrongCategory}
-                    ],
-                    [
-                        content => {$iCountAskSkipCategory}
-                    ],
-                    [
-                        content => '&nbsp;'
-                    ]
-                ]}
-            </td>
-        </tr>
-    </table>
-     {insert name='block' block='speedmeter' params=[  'plugin' => 'test', precent=>$iPrecent ]}
+{capture 'content'}
+    
+    
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="row p-2">
+                        <div class="col-8">{$aLang.plugin.test.block.panel_info.list.total_ask}</div>
+                        <div class="col-4">{$iCountAskTotal}</div>
+                    </div>
+                    
+                    <div class="bg-light rounded mt-2 p-2">
+                        <div><a class="link" href="{router page='test'}{$oTest->getCode()}/bilets/">{$aLang.plugin.test.panel.bilets.text}</a></div>
+                        <div class="row mt-1 pl-1 {if $iCountAskRightBilet}text-success{else}text-muted{/if}">
+                            <div class="col-8">{$aLang.plugin.test.block.panel_info.list.right}</div>
+                            <div class="col-4">{$iCountAskRightBilet}</div>
+                        </div>
+                        <div class="row pl-1 {if $iCountAskWrongBilet}text-danger{else}text-muted{/if}">
+                            <div class="col-8">{$aLang.plugin.test.block.panel_info.list.wrong}</div>
+                            <div class="col-4">{$iCountAskWrongBilet}</div>
+                        </div>
+                        <div class="row pl-1 text-muted">
+                            <div class="col-8">{$aLang.plugin.test.block.panel_info.list.skip}</div>
+                            <div class="col-4">{$iCountAskSkipBilet}</div>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="col-sm-6">
+                    <div class="row p-2">
+                        <div class="col-8">{$aLang.plugin.test.block.panel_info.list.total_time}</div>
+                        <div class="col-4">2322</div>
+                    </div>
+                        
+                    <div class="bg-light rounded mt-2 p-2">
+                        <div ><a class="link" href="{router page='test'}{$oTest->getCode()}/categories/">{$aLang.plugin.test.panel.categories.text}</a></div>
+                        <div class="row mt-1 pl-1 {if $iCountAskRightCategory}text-success{else}text-muted{/if}">
+                            <div class="col-8">{$aLang.plugin.test.block.panel_info.list.right}</div>
+                            <div class="col-4">{$iCountAskRightCategory}</div>
+                        </div>
+                        <div class="row pl-1 {if $iCountAskWrongCategory}text-danger{else}text-muted{/if}">
+                            <div class="col-8">{$aLang.plugin.test.block.panel_info.list.wrong}</div>
+                            <div class="col-4">{$iCountAskWrongCategory}</div>
+                        </div>
+                        <div class="row pl-1 text-muted">
+                            <div class="col-8">{$aLang.plugin.test.block.panel_info.list.skip}</div>
+                            <div class="col-4">{$iCountAskSkipBilet}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+            
+
+            
+        </div>
+                
+        <div class="col-lg-4 pt-2 d-flex flex-column">
+            <div class="text-center">{$aLang.plugin.test.block.panel_info.ready}</div>
+            <div class="d-flex justify-content-center">
+                {insert name='block' block='speedmeter' params=[  'plugin' => 'test', precent=>$iPrecent ]}
+            </div>
+            
+        </div>
+        
+    </div>
+    
+     
 {/capture}
 
-{component 'block'
-    title={$aLang.plugin.test.block.panel_info.title}
-    content={$smarty.capture.content}
+{component 'bs-card'
+    content = [
+        [
+            type => "header", 
+            content => $aLang.plugin.test.block.panel_info.title
+        ],
+        [
+            type => "body",
+            classes => "p-2",
+            content => $smarty.capture.content
+        ]
+    ]
 }
