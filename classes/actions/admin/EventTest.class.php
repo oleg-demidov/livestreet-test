@@ -29,12 +29,32 @@ class PluginTest_ActionAdmin_EventTest extends Event
             if(!$oTest){
                 $oTest = Engine::GetEntity('PluginTest_Test_Test' );
             }
+            
             $oTest->_setData(getRequest('test'));
+            
+            if(!isset($_POST['test']['state'])){
+                $oTest->setState(0);
+            }
+            if(!isset($_POST['test']['menu_enable'])){
+                $oTest->setMenuEnable(0);
+            }
+            
                        
             if($oTest->_Validate()){ 
                 if($oTest->Save()){
                     
-                    $this->Message_AddNoticeSingle($this->Lang_Get('plugin.test.admin.test.notices.add_success'),'',true);
+                    if ($oMedia = $this->Media_Upload($_FILES['image'], 'user' , $this->oUserCurrent->getId()) and is_object($oMedia)) {
+                        $this->Media_RemoveTargetByTypeAndId('test', $oTest->getId());
+                        $this->Media_AttachMedia([$oMedia->getId()], 'test', $oTest->getId());
+                    }else{
+                        $this->Message_AddError($oMedia);
+                    }
+                    
+                    if(getRequest('remove_image')){
+                        $this->Media_RemoveTargetByTypeAndId('test', $oTest->getId());
+                    }
+                    
+                    $this->Message_AddNoticeSingle($this->Lang_Get('common.success.save'),'',true);
                     Router::LocationAction("admin/plugin/test/".$oTest->getCode());
                     
                 }else{

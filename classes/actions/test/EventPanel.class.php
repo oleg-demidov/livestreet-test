@@ -7,9 +7,6 @@ class PluginTest_ActionTest_EventPanel extends Event
     {
         $this->oTest = $this->PluginTest_Test_GetTestByCode( $this->sCurrentEvent );
         
-        if(!$this->oTest){
-            return parent::EventNotFound();
-        }
         
         $this->sMenuHeadItemSelect = $this->oTest->getCode();
         

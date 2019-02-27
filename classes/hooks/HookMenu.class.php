@@ -19,10 +19,18 @@ class PluginTest_HookMenu extends Hook{
         
         $aItems = [];
         foreach ($aTests as $oTest) {
+            
+            if(!$oTest->getState()){
+                continue;
+            }
+            
+            if(!$oTest->getMenuEnable()){
+                continue;
+            }
            
             $oMenu->appendChild(Engine::GetEntity("ModuleMenu_EntityItem", [
-                'name' => $oTest->getTitle(),
-                'title' => $this->Lang_Get('plugin.test.main_menu.tests.text').' '.$oTest->getTitle(),
+                'name' => $oTest->getCode(),
+                'title' => $oTest->getMenuTitle(),
                 'url' => 'test/'.$oTest->getCode().'/bilets'
             ]));
             

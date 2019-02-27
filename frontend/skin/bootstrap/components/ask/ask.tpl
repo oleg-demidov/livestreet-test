@@ -6,7 +6,7 @@
 {component_define_params params=[ 'oAsk', 'aAnses', 'nextUrl', 'iAnsId', 'showHint', 'showSubmit', 'urlFinish', 'attributes', 'mods', 'classes' ]}
 
 
-<div class="{$component} js-{$component}-inner">
+<div class="{$component} mt-3 js-{$component}-inner">
 
     
     {if $image = $oAsk->getImage('500x') }

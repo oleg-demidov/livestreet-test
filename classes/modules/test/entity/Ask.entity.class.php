@@ -42,6 +42,10 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
         
         $aMedia =  $this->Media_GetMediaByTarget('ask', $this->getId());
         
+        if(!$aMedia){
+            $aMedia =  $this->Media_GetMediaByTarget('test', $this->getTest()->getId());
+        }
+        
         $this->setMedia($aMedia);
         
         return $aMedia;

@@ -17,6 +17,7 @@ class PluginTest_ActionTest_EventBilet extends Event
         
         $this->oTest = $this->oBilet->getTest();
         
+        
         $this->sMenuHeadItemSelect = $this->oTest->getCode();
     }
     

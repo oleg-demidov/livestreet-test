@@ -17,6 +17,7 @@ class PluginTest_ActionTest_EventCategory extends Event
         
         $this->oTest = $this->oCategory->getTest();
         
+        
         $this->sMenuHeadItemSelect = $this->oTest->getCode();
     }
     

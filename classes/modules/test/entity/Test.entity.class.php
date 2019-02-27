@@ -6,7 +6,10 @@ class PluginTest_ModuleTest_EntityTest extends EntityORM
     protected $aValidateRules = array(
         array('title', 'string', 'min' => 3, 'max'=>100, 'allowEmpty' => false),
         array('code', 'string', 'min' => 3, 'max'=>50, 'allowEmpty' => false),
+        array('menu_enable', 'boolean', 'allowEmpty' => false),
+        array('menu_title', 'string',  'max'=>100),
         array('code', 'code', 'allowEmpty' => false),
+        array('state', 'boolean', 'allowEmpty' => false),
     );
     
     protected $aRelations = array(
@@ -68,6 +71,18 @@ class PluginTest_ModuleTest_EntityTest extends EntityORM
         $oCategory->setUrl($this->getCode());
         $oCategory->setUrlFull($this->getCode());
         return $oCategory->Save();
+    }
+    
+    public function getMedia() {
+        if(is_array(parent::getMedia()) and count(parent::getMedia())){
+            return parent::getMedia();
+        }
+        
+        $aMedia =  $this->Media_GetMediaByTarget('test', $this->getId());
+        
+        $this->setMedia($aMedia);
+        
+        return $aMedia;
     }
     
     public function getUrlEdit() {

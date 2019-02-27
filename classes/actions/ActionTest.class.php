@@ -9,7 +9,7 @@ class PluginTest_ActionTest extends ActionPlugin
      */
     protected $oUserCurrent = null;
     
-    protected $oTest = null;
+    public $oTest = null;
     
     protected $sMenuHeadItemSelect = null;
     
@@ -26,6 +26,7 @@ class PluginTest_ActionTest extends ActionPlugin
         if(!$this->oUserCurrent and Router::GetParam(0) !== 'index'){
             return Router::Action(Router::GetAction(), Router::GetActionEvent(), ['index']);
         }
+        
     }
 
     /**
