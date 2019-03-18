@@ -17,6 +17,7 @@ class PluginTest_HookAdmin extends Hook{
      */
     public function InitActionAdmin()
     {
+        $this->Component_Add('test:field');
         /**
          * Получаем объект главного меню
          */

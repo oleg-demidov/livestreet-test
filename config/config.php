@@ -31,11 +31,14 @@ $config['test'] = [
 
 $config['admin']['assets'] = [
     'js' => [
-        'assets/js/admin.js'
+        //'assets/js/admin.js'
     ],
     'css' => [
         'assets/css/admin.css'
     ]
+]; 
+$config['admin']['components'] = [
+    'wiki:editor'
 ]; 
 
 $config['assets']['js'][]  = 'assets/js/init.js'; 

@@ -36,6 +36,10 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
     
     
     public function getMedia() {
+        if($this->_isNew()){
+            return [];
+        }
+        
         if(is_array(parent::getMedia()) and count(parent::getMedia())){
             return parent::getMedia();
         }

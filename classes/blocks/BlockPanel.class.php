@@ -54,7 +54,7 @@ class PluginTest_BlockPanel extends Block {
         
         $iCountAskSkipBilet = $iCountAskTotal - ($iCountAskRightBilet + $iCountAskWrongBilet);
         $iCountAskSkipCategory = $iCountAskTotal - ($iCountAskRightCategory + $iCountAskWrongCategory);
-        $iPrecent = round(($iCountAskRightBilet/($iCountAskTotal/100))/2 + ($iCountAskRightCategory/($iCountAskTotal/100))/2);
+        $iPrecent = $iCountAskTotal?round(($iCountAskRightBilet/($iCountAskTotal/100))/2 + ($iCountAskRightCategory/($iCountAskTotal/100))/2):0;
         
         $this->Viewer_Assign('avatar', $this->GetParam('avatar', true) );
         $this->Viewer_Assign('iPrecent', $iPrecent );

@@ -86,6 +86,10 @@ class PluginTest_ModuleTest extends ModuleORM
     }
     
     public function AttachResultsToBilets($aBilets, $oUser) {
+        if(!$aBilets){
+            return;
+        }
+        
         $aBiletIds = array_keys($aBilets);
 
         $aResults = $this->PluginTest_Test_GetResultItemsByFilter([

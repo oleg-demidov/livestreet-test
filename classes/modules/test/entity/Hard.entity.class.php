@@ -21,7 +21,7 @@ class PluginTest_ModuleTest_EntityHard extends Entity
     
     public function getNowAskId($iNumberAsk) {
         $aAskIds = $this->getAskIds();
-        return $aAskIds[$iNumberAsk-1];
+        return isset($aAskIds[$iNumberAsk-1])?$aAskIds[$iNumberAsk-1]:0;
     }
     
 }

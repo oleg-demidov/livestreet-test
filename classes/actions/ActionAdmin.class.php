@@ -9,7 +9,7 @@ class PluginTest_ActionAdmin extends PluginAdmin_ActionPlugin
     public function Init()
     {
         $this->SetDefaultEvent('list');
-        $this->Component_Add('test:field');
+        
     }
 
     /**
