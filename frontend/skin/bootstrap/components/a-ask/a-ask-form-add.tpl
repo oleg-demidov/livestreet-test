@@ -48,7 +48,14 @@
         [ field => 'image',     name => 'image', label => 'Изображение' , uploadedFiles => $uploadedFiles, removeName => 'remove_image'],
         [ field => 'text',     name => 'ask[title]', label => 'Название' ],
         [ field => 'textarea',     name => 'ask[text]',  label => 'Вопрос' ],
-        [ field => 'textarea',     name => 'ask[hint]', label => 'Подсказка' ],
+        {component 'wiki:editor'  
+            inputClasses="js-editor-default"
+            mediaTargetType="user"
+            mediaTargetId=$oUserCurrent->getId()
+            value={($oAsk)?$oAsk->getHintSource():''}  
+            name = 'ask[hint_source]'  
+            label = 'Подсказка'
+            rows = 4},
         {component "test:field" template = 'fieldset'  items=$itemsAns activeItem=$activeItem   name = 'ask[anses_values][]' label = 'Ответы' },
         [ field => 'text', name => 'ask[order]', label => 'Порядок в билете', 'note' => 'Чем меньше тем выше'],
         [ field => 'select', name => 'ask[bilet_id]', label => 'Билет', items => $aItemsBilets ],

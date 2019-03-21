@@ -7,6 +7,7 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
         array('title', 'string', 'max' => 50, 'min' => 1, 'allowEmpty' => true),
         array('text', 'string', 'max' => 1000, 'min' => 1, 'allowEmpty' => false),
         array('hint', 'string', 'max' => 2000, 'min' => 1, 'allowEmpty' => true),
+        array('hint_source', 'string', 'max' => 2000, 'min' => 1, 'allowEmpty' => true),
     );
     
     protected $aBehaviors = array(

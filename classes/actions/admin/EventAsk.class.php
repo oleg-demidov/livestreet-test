@@ -34,7 +34,9 @@ class PluginTest_ActionAdmin_EventAsk extends Event
             $oAsk->_setData( getRequest('ask') ); 
             
             $oAsk->setRightAnsValue(getRequest('right_ans_value'));
-            $oAsk->setTestId( $oTest->getId() );   
+            $oAsk->setTestId( $oTest->getId() ); 
+            
+            $oAsk->setHint($this->Text_Parser($oAsk->getHintSource()) );
             
             
             
