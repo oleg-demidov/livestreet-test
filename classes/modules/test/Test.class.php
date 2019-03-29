@@ -14,8 +14,7 @@ class PluginTest_ModuleTest extends ModuleORM
         'category' => array(
             'class'       => 'ModuleCategory_BehaviorModule',
             'target_type' => 'test',
-        ),
-        'property' => 'ModuleProperty_BehaviorModule'
+        )
     );
     
     public function Ans($oAsk, $iAnsId) {
