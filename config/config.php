@@ -45,7 +45,7 @@ $config['assets']['js'][]  = 'assets/js/init.js';
 
 $config['$root$']['block']['rule_profile'] = array(
     'action' => array(
-         'profile'
+        'profile' => '{profile}'
     ),
     'blocks' => array(
         'header' => array(
