@@ -48,7 +48,7 @@ $config['$root$']['block']['rule_profile'] = array(
         'profile' => '{profile}'
     ),
     'blocks' => array(
-        'header' => array(
+        'profile' => array(
             'panel' => array('priority' => 99,'params' => array('plugin' => 'test', 'template' => 'profile', 'sTestCode' => 'pdd', 'avatar' => false))
         )
     ),
