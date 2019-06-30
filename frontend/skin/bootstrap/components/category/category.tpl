@@ -39,7 +39,11 @@
                 url     = {router page="test/category/{$oCategory->getId()}"}}
         </div>
     </div>
-    {$precent = round($oCategory->getRight()/$oCategory->getCountAsks()*100)}
+        
+    {$precent=0}
+    {if $oCategory->getCountAsks()}
+        {$precent = round($oCategory->getRight()/($oCategory->getCountAsks()*100))}
+    {/if}
     
     {component "bs-progressbar" height=3 value=$precent classes="mt-2" bg="success"}
 {/capture}

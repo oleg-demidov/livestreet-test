@@ -25,19 +25,16 @@
 
 {* Формируем список ответов  *}
 {$itemsAns=[]}
-{foreach $oAsk->getAnses() as $ans}
-    
-    {if $ans->getIsRight()}
-        {$activeItem = $ans->getValue()}
-    {/if}
-    
-    {$itemsAns[] = $ans->getValue()}
-{/foreach}
+{if $oAsk}
+    {foreach $oAsk->getAnses() as $ans}
 
-{$uploadedFiles = []}
-{foreach $oAsk->getMedia() as $oMedia}
-    {$uploadedFiles[] = $oMedia->getFileWebPath('500x')}
-{/foreach}
+        {if $ans->getIsRight()}
+            {$activeItem = $ans->getValue()}
+        {/if}
+
+        {$itemsAns[] = $ans->getValue()}
+    {/foreach}
+{/if}
 
 
 {component 'admin:p-form'
@@ -45,13 +42,10 @@
     isEdit=$oAsk 
     submit=[ name => 'ask_submit' , 'text' => $aLang.common.save] 
     form=[
-        [ field => 'image',     name => 'image', label => 'Изображение' , uploadedFiles => $uploadedFiles, removeName => 'remove_image'],
+        {component 'media:mfield' oBehavior=$oAsk->image},
         [ field => 'text',     name => 'ask[title]', label => 'Название' ],
         [ field => 'textarea',     name => 'ask[text]',  label => 'Вопрос' ],
-        {component 'wiki:editor'  
-            inputClasses="js-editor-default"
-            mediaTargetType="user"
-            mediaTargetId=$oUserCurrent->getId()
+        {component 'tinymce'  
             value={($oAsk)?$oAsk->getHintSource():''}  
             name = 'ask[hint_source]'  
             label = 'Подсказка'

@@ -69,10 +69,10 @@ class PluginTest_ActionAdmin_EventBilet extends Event
         
         $this->Security_ValidateSendForm();
 
-//            $aAsks = $oBilet->getAsks(); 
-//            foreach($aAsks as $oAsk){
-//                $oAsk->Delete();
-//            }
+        foreach ($oBilet->getAsks() as $oAsk){
+            $oAsk->setBiketId(null);
+            $oAsk->Save();
+        }
 
         /**
          * Удаляем

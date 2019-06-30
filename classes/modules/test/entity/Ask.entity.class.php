@@ -16,7 +16,13 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
             'class'       => 'ModuleCategory_BehaviorEntity',
             'target_type' => 'test',
             'form_field'  => 'category',
-        )
+        ),
+        'image' => [
+            'PluginMedia_ModuleMedia_BehaviorEntity',
+            'target_type' => 'image_ask',
+            'field_name'  => 'image',
+            'field_label' => 'Изображение:'
+        ]
     );
    
     protected $aRelations = array(
@@ -35,35 +41,15 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
         return Router::GetPath('admin/plugin/test/ask/edit/'.$this->getId());
     }
     
-    
-    public function getMedia() {
-        if($this->_isNew()){
-            return [];
+    public function getMeidaImage($size){
+        $aMedias = $this->image->getMedia();
+        if($aMedias){           
+            $oMedia = $aMedias[0];
+            return $oMedia->getObject()->getWebPath($size);
         }
-        
-        if(is_array(parent::getMedia()) and count(parent::getMedia())){
-            return parent::getMedia();
-        }
-        
-        $aMedia =  $this->Media_GetMediaByTarget('ask', $this->getId());
-        
-        if(!$aMedia){
-            $aMedia =  $this->Media_GetMediaByTarget('test', $this->getTest()->getId());
-        }
-        
-        $this->setMedia($aMedia);
-        
-        return $aMedia;
+        return $this->getTest()->getDefaultImage($size);
     }
-    
-    
-    public function getImage($sSize) {
-        if($aMedia =  $this->getMedia()){
-            return array_shift($aMedia)->getFileWebPath($sSize);
-        }
-        return null;
-    }
-     
+
     public function afterSave() {
         parent::afterSave(); 
         
@@ -97,6 +83,8 @@ class PluginTest_ModuleTest_EntityAsk extends EntityORM
     }
     
     public function afterDelete(){
+        parent::afterDelete();
+        
         if($aAnses = $this->getAnses()){
             foreach($aAnses as $oAns){
                 $oAns->Delete();

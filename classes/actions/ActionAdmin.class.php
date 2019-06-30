@@ -29,6 +29,7 @@ class PluginTest_ActionAdmin extends PluginAdmin_ActionPlugin
         
         $this->RegisterEventExternal('Ask', 'PluginTest_ActionAdmin_EventAsk');        
         $this->AddEventPreg( '/^ask$/i', '/^(add|edit)$/i', '/^([0-9]{1,50})?$/i',  'Ask::EventAddEdit');
+        $this->AddEventPreg( '/^ask$/i', '/^remove$/i', '/^([0-9]{1,50})?$/i',  'Ask::EventRemove');
         
 //        $this->RegisterEventExternal('Settings', 'PluginTest_ActionAdmin_EventSettings');        
 //        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^settings$/i', '/^asks$/i',  'Settings::EventAsks');

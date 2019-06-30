@@ -23,8 +23,8 @@ class PluginTest_ActionTest extends ActionPlugin
         
         $this->oUserCurrent = $this->User_GetUserCurrent();
         
-        if(!$this->oUserCurrent and Router::GetParam(0) !== 'index'){
-            return Router::Action(Router::GetAction(), Router::GetActionEvent(), ['index']);
+        if(!$this->oUserCurrent ){
+            Router::LocationAction(Config::Get('plugin.test.redirect.no_auth'));
         }
         
     }
@@ -55,10 +55,10 @@ class PluginTest_ActionTest extends ActionPlugin
         $this->AddEventPreg('/^ajax-hard-test$/i', '/^[0-9]{1,50}$/i', 'Hard::EventAjaxAsk');        
         
         $this->RegisterEventExternal('Panel','PluginTest_ActionTest_EventPanel');
-        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^(index)?$/i', 'Panel::EventIndex');
-        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^bilets$/i', 'Panel::EventBilets');
-        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^categories$/i', 'Panel::EventCategories');
-        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^hard$/i', 'Panel::EventHard');        
+        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^(index)?$/i', ['Panel::EventIndex', 'panel']);
+        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^bilets$/i', ['Panel::EventBilets', 'panel']);
+        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^categories$/i', ['Panel::EventCategories', 'panel']);
+        $this->AddEventPreg('/^[a-z_0-9]{1,50}$/i', '/^hard$/i', ['Panel::EventHard', 'panel']);        
     }
 
     public function EventShutdown() {

@@ -29,23 +29,25 @@ $config['test'] = [
     ]
 ];
 
+$config['redirect'] = [
+    'no_auth' => 'page/test-no-auth'
+];
+
 $config['admin']['assets'] = [
     'js' => [
-        //'assets/js/admin.js'
+        'assets/js/admin.js'
     ],
     'css' => [
         'assets/css/admin.css'
     ]
 ]; 
-$config['admin']['components'] = [
-    'wiki:editor'
-]; 
+
 
 $config['assets']['js'][]  = 'assets/js/init.js'; 
 
 $config['$root$']['block']['rule_profile'] = array(
     'action' => array(
-        'profile' => '{profile}'
+        'profile' => ['{profile}']
     ),
     'blocks' => array(
         'profile' => array(
@@ -56,7 +58,7 @@ $config['$root$']['block']['rule_profile'] = array(
 );
 $config['$root$']['block']['test_panel'] = array(
     'action' => array(
-        'test'
+        'test' => ['{panel}']
     ),
     'blocks' => array(
         'left' => array(

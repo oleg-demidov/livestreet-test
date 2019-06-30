@@ -36,8 +36,6 @@ class PluginTest extends Plugin
         $this->Viewer_AppendScript(Plugin::GetTemplatePath('test'). '/assets/js/init.js');
         
         
-        $this->Media_AddTargetType('test_img_default');
-        
     }
 
     public function Activate()

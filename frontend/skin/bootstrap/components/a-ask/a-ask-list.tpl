@@ -49,7 +49,7 @@
                     </td>
                     <td class="ls-table-cell-actions">
                         <a href="{$oAsk->getUrlEdit()}" class="fa fa-edit" title="{$aLang.plugin.admin.edit}"></a>
-                        <a href="{router page="admin/plugin/test/bilet/remove/{$oAsk->getId()}"}?security_ls_key={$LIVESTREET_SECURITY_KEY}" class="fa fa-trash-o js-confirm-remove" title="{$aLang.plugin.admin.delete}"></a>
+                        <a href="{router page="admin/plugin/test/ask/remove/{$oAsk->getId()}"}?security_ls_key={$LIVESTREET_SECURITY_KEY}" class="far fa-trash-alt text-danger js-confirm-remove" title="{$aLang.plugin.admin.delete}"></a>
                     </td>
                 </tr>
             {/foreach}

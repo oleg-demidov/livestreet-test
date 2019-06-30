@@ -44,16 +44,7 @@ class PluginTest_ActionAdmin_EventAsk extends Event
                 
                 if($oAsk->Save()){
                     
-                    if ($oMedia = $this->Media_Upload($_FILES['image'], 'user' , $this->oUserCurrent->getId()) and is_object($oMedia)) {
-                        $this->Media_RemoveTargetByTypeAndId('ask', $oAsk->getId());
-                        $this->Media_AttachMedia([$oMedia->getId()], 'ask', $oAsk->getId());
-                    }else{
-                        $this->Message_AddError($oMedia);
-                    }
                     
-                    if(getRequest('remove_image')){
-                        $this->Media_RemoveTargetByTypeAndId('ask', $oAsk->getId());
-                    }
                     
                     $this->Message_AddNoticeSingle($this->Lang_Get('common.success.save'), '', true);
                     //Router::LocationAction('admin/plugin/test/'.$oTest->getCode());
@@ -80,12 +71,38 @@ class PluginTest_ActionAdmin_EventAsk extends Event
         }
         
         
-        
+        if (!$oAsk) {
+            $oAsk = Engine::GetEntity('PluginTest_Test_Ask');
+        }
         $this->Viewer_Assign('oAsk', $oAsk);
         $this->Viewer_Assign('oAnsRight', $oAnsRight);
         $this->Viewer_Assign('aBilets', $oTest->getBilets());
         $this->Viewer_Assign('aCategories', $oTest->getCategoriesItems());
     }
     
+    public function EventRemove() {
+        $this->SetTemplate(false);
+        
+        $this->Security_ValidateSendForm();
+        
+        if(!$oAsk = $this->PluginTest_Test_GetAskById( $this->GetParam(1) )){
+            $this->Message_AddError($this->Lang_Get('plugin.test.admin.ask.error.not_found'), $this->Lang_Get('common.error.error'), true);
+            Router::LocationAction("admin");
+        }
+        
+        if($oTest = $oAsk->getTest()){
+            $sTest = $oTest->getCode();
+        }      
     
+        /**
+         * Удаляем
+         */
+        if ($oAsk->Delete()) {
+            $this->Message_AddNotice('Удаление прошло успешно', null, true);
+        } else {
+            $this->Message_AddError('Возникла ошибка при удалении', null, true);
+        }
+
+        Router::LocationAction("admin/plugin/test/" . $sTest. '/asks');
+    }
 }

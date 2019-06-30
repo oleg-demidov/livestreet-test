@@ -42,18 +42,7 @@ class PluginTest_ActionAdmin_EventTest extends Event
                        
             if($oTest->_Validate()){ 
                 if($oTest->Save()){
-                    
-                    if ($oMedia = $this->Media_Upload($_FILES['image'], 'user' , $this->oUserCurrent->getId()) and is_object($oMedia)) {
-                        $this->Media_RemoveTargetByTypeAndId('test', $oTest->getId());
-                        $this->Media_AttachMedia([$oMedia->getId()], 'test', $oTest->getId());
-                    }else{
-                        $this->Message_AddError($oMedia);
-                    }
-                    
-                    if(getRequest('remove_image')){
-                        $this->Media_RemoveTargetByTypeAndId('test', $oTest->getId());
-                    }
-                    
+                   
                     $this->Message_AddNoticeSingle($this->Lang_Get('common.success.save'),'',true);
                     Router::LocationAction("admin/plugin/test/".$oTest->getCode());
                     
@@ -171,51 +160,4 @@ class PluginTest_ActionAdmin_EventTest extends Event
         
     }
     
-//    public function EventSettings() {
-//        $this->SetTemplateAction('test-settings');
-//                
-//        $oTest = $this->PluginTest_Test_GetTestByCode( $this->sCurrentEvent );
-//        if(!$oTest){
-//            return Router::ActionError($this->Lang_Get('plugin.test.admin.bilet.notices.no_test_find'));
-//        }
-//        
-//        
-//        if(isPost()){
-//        
-//            $oTest->setState(getRequest('state'));
-//            
-//            if($oTest->Save()){
-//                $this->Message_AddNotice('Cохранено успешно');
-//            }
-//            
-//            $aFile = $_FILES['image'];
-//            
-//            
-//            if($aFile or getRequest('remove')){  
-//                $this->Media_RemoveTarget('test_img_default', $oTest->getId(), true);
-//            }
-//            
-//            if($aFile){  
-//                            
-//                if($oMedia = $this->Media_Upload($aFile, 'user', $this->oUserCurrent->getId()) and is_object($oMedia)){
-//                    $this->Media_AttachMedia([$oMedia->getId()], 'test_img_default', $oTest->getId());
-//                    $this->Message_AddNotice('Картинка сохранена успешно');
-//                }
-//
-//            }
-//        }
-//        
-//        $_REQUEST = [
-//            'state' => $oTest->getState()
-//        ];      
-//        
-//        
-//        $aMedias = $this->Media_GetMediaByTarget('test_img_default', $oTest->getId());
-//        
-//               
-//        $this->Viewer_Assign('oTest', $oTest);
-//        $this->Viewer_Assign('aMedias', $aMedias);
-////        $this->Viewer_Assign('aBilets', $oTest->getBilets());
-//        $this->Viewer_Assign('activeNavItem', 'settings');
-//    }
 }

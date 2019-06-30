@@ -8,8 +8,7 @@
 
 <div class="{$component} mt-3 js-{$component}-inner">
 
-    
-    {if $image = $oAsk->getImage('500x') }
+    {if $image = $oAsk->getMeidaImage('500x') }
         <img src="{$image}">
     {else}
         <img src="{$componentAskWebPath}/img/no-image.png">

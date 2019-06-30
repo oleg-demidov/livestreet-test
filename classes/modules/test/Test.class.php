@@ -14,7 +14,11 @@ class PluginTest_ModuleTest extends ModuleORM
         'category' => array(
             'class'       => 'ModuleCategory_BehaviorModule',
             'target_type' => 'test',
-        )
+        ),
+        'image' => [
+            'PluginMedia_ModuleMedia_BehaviorModule',
+            'target_type' => 'image_ask'
+        ]
     );
     
     public function Ans($oAsk, $iAnsId) {

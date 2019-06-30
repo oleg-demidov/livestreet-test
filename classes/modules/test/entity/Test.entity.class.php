@@ -23,6 +23,12 @@ class PluginTest_ModuleTest_EntityTest extends EntityORM
             'class'       => 'ModuleCategory_BehaviorEntity',
             'target_type' => 'test',
         ),
+        'defimage' => [
+            'PluginMedia_ModuleMedia_BehaviorEntity',
+            'target_type' => 'defimagetest',
+            'field_name'  => 'image',
+            'field_label' => 'Изображение по умолчанию:'
+        ]
     );
     
     public function ValidateCode($mValue) {
@@ -73,16 +79,13 @@ class PluginTest_ModuleTest_EntityTest extends EntityORM
         return $oCategory->Save();
     }
     
-    public function getMedia() {
-        if(is_array(parent::getMedia()) and count(parent::getMedia())){
-            return parent::getMedia();
+    public function getDefaultImage($size) {
+        $aMedias = $this->defimage->getMedia();
+        if($aMedias){           
+            $oMedia = $aMedias[0];
+            return $oMedia->getObject()->getWebPath($size);
         }
-        
-        $aMedia =  $this->Media_GetMediaByTarget('test', $this->getId());
-        
-        $this->setMedia($aMedia);
-        
-        return $aMedia;
+        return null; 
     }
     
     public function getUrlEdit() {
