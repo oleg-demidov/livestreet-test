@@ -18,7 +18,7 @@ class PluginTest_ActionTest_EventPanel extends Event
         /**
          * Загружаем переменные в шаблон
          */
-//        $this->SetTemplateAction('panel/index');        
+//         $this->SetTemplateAction('panel/index');        
         return $this->EventBilets();
         
     }
